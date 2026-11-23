@@ -4,6 +4,7 @@ tenant_id: pharma_a
 brand_id: brand_cardionex
 status: superseded
 effective_date: 2025-02-01
+country: US
 superseded_by: cardionex-uspi-v2
 ---
 

@@ -4,6 +4,7 @@ tenant_id: pharma_b
 brand_id: brand_neurovex
 status: active
 effective_date: 2026-05-01
+country: US
 ---
 
 # NEUROVEX (neurovexin) Prescribing Information — Tenant Pharma_B Confidential

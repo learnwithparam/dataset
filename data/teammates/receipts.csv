@@ -1,0 +1,5 @@
+receipt_id,vendor,amount,currency,date
+RC-01,CloudHost,120.00,USD,2026-11-03
+RC-02,City Taxi,35.50,USD,2026-11-04
+RC-03,CloudHost,120.00,USD,2026-11-03
+RC-04,Hotel Berlin,210.00,EUR,2026-11-05

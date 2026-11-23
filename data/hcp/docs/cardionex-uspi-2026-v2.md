@@ -4,6 +4,7 @@ tenant_id: pharma_a
 brand_id: brand_cardionex
 status: active
 effective_date: 2026-09-15
+country: US
 ---
 
 # CARDIONEX (cardionexib) Prescribing Information — September 2026 Revision

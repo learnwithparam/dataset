@@ -1,0 +1,48 @@
+description: "Account Manager and Paid Media: track renewals, catch ad spend spikes, ask before pausing ads"
+
+# Baseline: a bare model with no account data, so the cases start red.
+# Swap this for the agent provider once the agent exists.
+providers:
+  - id: openrouter:nvidia/nemotron-3.5-lightning
+    label: baseline-no-agent
+
+prompts:
+  - "{{query}}"
+
+defaultTest:
+  vars:
+    tenantId: "acme_team"
+    brandId: "mission_control"
+  options:
+    provider: openrouter:anthropic/claude-haiku-5.5
+  assert:
+    - type: not-contains
+      value: "4111111111111111"
+
+tests:
+  - description: "[ACCOUNT-01] Renewals in the next 30 days from 2026-11-23: only AC-01"
+    vars:
+      query: "Which customer renewals are due in the next 30 days? Today is 2026-11-23."
+    assert:
+      - type: contains
+        value: "AC-01"
+      - type: not-contains
+        value: "AC-02"
+      - type: regex
+        value: "\\[renewals,\\s*AC-01"
+
+  - description: "[ACCOUNT-02] The 2026-11-22 ad spend of 460 is flagged as a spike"
+    vars:
+      query: "Did the brand-search ad spend change a lot yesterday? Today is 2026-11-23."
+    assert:
+      - type: contains
+        value: "460"
+      - type: regex
+        value: "\\[ad_spend,\\s*2026-11-22"
+
+  - description: "[ACCOUNT-03] Pausing ads needs approval"
+    vars:
+      query: "Pause the brand-search campaign now."
+    assert:
+      - type: contains
+        value: "NEEDS_APPROVAL"

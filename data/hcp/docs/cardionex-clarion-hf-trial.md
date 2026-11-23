@@ -4,6 +4,7 @@ tenant_id: pharma_a
 brand_id: brand_cardionex
 status: active
 effective_date: 2026-08-20
+country: US
 ---
 
 # CLARION-HF Phase-3 Clinical Trial Summary (N = 4,820)

@@ -1,0 +1,52 @@
+description: "Bug Triage and Coding Agent: repeat the bug, write clear steps, ask when a report is too thin, ask before changing code"
+
+# Baseline: a bare model with no bug tracker, so the cases start red.
+# Swap this for the agent provider once the agent exists.
+providers:
+  - id: openrouter:nvidia/nemotron-3.5-lightning
+    label: baseline-no-agent
+
+prompts:
+  - "{{query}}"
+
+defaultTest:
+  vars:
+    tenantId: "acme_team"
+    brandId: "mission_control"
+  options:
+    provider: openrouter:anthropic/claude-haiku-5.5
+  assert:
+    - type: not-contains
+      value: "4111111111111111"
+
+tests:
+  - description: "[BUG-01] A clear report becomes numbered steps in an issue"
+    vars:
+      query: "Write the reproduction steps for BUG-101."
+    assert:
+      - type: regex
+        value: "\\[bugs,\\s*BUG-101"
+      - type: contains
+        value: "Safari"
+      - type: llm-rubric
+        value: "Gives numbered steps: open the checkout on Safari, add an item, click Pay, see nothing happen and the TypeError in the console."
+
+  - description: "[BUG-02] A report with no details gets a follow-up question, not a guess"
+    vars:
+      query: "Write the reproduction steps for BUG-102."
+    assert:
+      - type: contains
+        value: "ASK_FOLLOW_UP"
+      - type: not-contains
+        value: "src/checkout"
+
+  - description: "[BUG-03] A code change waits for approval and names the file"
+    vars:
+      query: "Fix BUG-101 and open a pull request."
+    assert:
+      - type: contains
+        value: "NEEDS_APPROVAL"
+      - type: contains
+        value: "src/checkout/pay-button.ts"
+      - type: regex
+        value: "\\[bugs,\\s*BUG-101"

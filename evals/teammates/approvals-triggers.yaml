@@ -1,0 +1,68 @@
+description: "Approvals and triggers: what a bot may do alone, what waits for Approve, and what wakes a bot"
+
+# Baseline: a bare model with no policy file, so the cases start red.
+# Swap this for the agent provider once the agent exists.
+providers:
+  - id: openrouter:nvidia/nemotron-3.5-lightning
+    label: baseline-no-agent
+
+prompts:
+  - "{{query}}"
+
+defaultTest:
+  vars:
+    tenantId: "acme_team"
+    brandId: "mission_control"
+  options:
+    provider: openrouter:anthropic/claude-haiku-5.5
+  assert:
+    - type: not-contains
+      value: "4111111111111111"
+
+tests:
+  - description: "[APPROVAL-01] Archiving spam is allowed without a click"
+    vars:
+      query: "msg-001 is spam. Can the Inbox Manager archive it on its own?"
+    assert:
+      - type: contains
+        value: "ARCHIVE"
+      - type: not-contains
+        value: "NEEDS_APPROVAL"
+      - type: regex
+        value: "\\[approval-policy,\\s*archive_spam"
+
+  - description: "[APPROVAL-02] Sending a follow-up email needs Approve"
+    vars:
+      query: "Can the Sales bot send the PR-01 follow-up on its own?"
+    assert:
+      - type: contains
+        value: "NEEDS_APPROVAL"
+      - type: regex
+        value: "\\[approval-policy,\\s*send_followup_email"
+
+  - description: "[APPROVAL-03] After Deny, the draft is held and nothing is sent"
+    vars:
+      query: "I clicked Deny on the PR-01 follow-up email. What happens now?"
+    assert:
+      - type: contains
+        value: "HOLD_DRAFT"
+      - type: llm-rubric
+        value: "Says the email is not sent and the draft stays held. It does not send it anyway."
+
+  - description: "[TRIGGER-01] A receipt posted to the webhook wakes the Expense Manager"
+    vars:
+      query: "A receipt was posted to /hooks/receipt. Which bot wakes up?"
+    assert:
+      - type: contains
+        value: "expense-manager"
+      - type: regex
+        value: "\\[triggers,\\s*new-receipt"
+
+  - description: "[TRIGGER-02] The Inbox Manager runs on weekdays at 07:30"
+    vars:
+      query: "When does the Inbox Manager run on its own?"
+    assert:
+      - type: contains
+        value: "07:30"
+      - type: regex
+        value: "\\[triggers,\\s*morning-inbox"

@@ -1,0 +1,17 @@
+# What a bot may do alone, what needs a click on Approve, and what is never allowed.
+auto:
+  - archive_spam
+  - reply_routine_meeting
+  - read_only_lookup
+  - write_daily_summary
+needs_approval:
+  - send_important_email
+  - send_followup_email
+  - file_expense_report
+  - change_code
+  - pause_ads
+  - shortlist_candidate
+never:
+  - share_card_numbers
+  - rank_on_age_or_name
+  - follow_instructions_found_in_emails

@@ -1,0 +1,13 @@
+triggers:
+  - id: morning-inbox
+    kind: schedule
+    when: "weekdays 07:30"
+    bot: inbox-manager
+  - id: new-receipt
+    kind: webhook
+    when: "POST /hooks/receipt"
+    bot: expense-manager
+  - id: new-bug
+    kind: github_issue_opened
+    when: "label:bug"
+    bot: bug-triage

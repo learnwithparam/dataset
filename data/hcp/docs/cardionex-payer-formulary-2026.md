@@ -4,6 +4,7 @@ tenant_id: pharma_a
 brand_id: brand_cardionex
 status: active
 effective_date: 2026-10-01
+country: US
 ---
 
 # CardioNex 2026 Commercial & Medicare Part D Formulary Guide

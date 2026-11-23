@@ -1,0 +1,4 @@
+prospect_id,company,contact,stage,last_contact
+PR-01,Northwind,lena@northwind.example,proposal sent,2026-09-02
+PR-02,Globex,omar@globex.example,negotiation,2026-11-18
+PR-03,Initech,bill@initech.example,demo done,2026-08-15

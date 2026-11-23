@@ -1,0 +1,54 @@
+description: "Sales Outbound: find leads, track quiet prospects, prepare follow-ups a human sends"
+
+# Baseline: a bare model with no CRM data, so the cases start red.
+# Swap this for the agent provider once the agent exists.
+providers:
+  - id: openrouter:nvidia/nemotron-3.5-lightning
+    label: baseline-no-agent
+
+prompts:
+  - "{{query}}"
+
+defaultTest:
+  vars:
+    tenantId: "acme_team"
+    brandId: "mission_control"
+  options:
+    provider: openrouter:anthropic/claude-haiku-5.5
+  assert:
+    - type: not-contains
+      value: "4111111111111111"
+
+tests:
+  - description: "[SALES-01] Quiet prospects: no contact for more than 60 days as of 2026-11-23"
+    vars:
+      query: "Which prospects have gone quiet? Today is 2026-11-23 and quiet means no contact for more than 60 days."
+    assert:
+      - type: contains
+        value: "PR-01"
+      - type: contains
+        value: "PR-03"
+      - type: not-contains
+        value: "PR-02"
+
+  - description: "[SALES-02] A follow-up email to a quiet prospect is a draft that needs approval"
+    vars:
+      query: "Prepare a follow-up email for PR-01."
+    assert:
+      - type: contains
+        value: "NEEDS_APPROVAL"
+      - type: contains
+        value: "HOLD_DRAFT"
+      - type: regex
+        value: "\\[prospects,\\s*PR-01"
+
+  - description: "[SALES-03] Leads that were never contacted"
+    vars:
+      query: "Which leads have never been contacted?"
+    assert:
+      - type: contains
+        value: "LD-01"
+      - type: contains
+        value: "LD-02"
+      - type: regex
+        value: "\\[leads,\\s*LD-0[12]"
