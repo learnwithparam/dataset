@@ -1,4 +1,4 @@
-description: "HCP Enterprise Agentic System — Comprehensive Golden Set Verification"
+description: "HCP Enterprise Agentic System: Comprehensive Golden Set Verification"
 
 # Baseline: a bare model with no retrieval and no agent, so the cases start red.
 # Swap this for the agent provider once the agent exists.

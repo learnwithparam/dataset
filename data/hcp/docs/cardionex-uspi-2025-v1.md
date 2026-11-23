@@ -8,7 +8,7 @@ country: US
 superseded_by: cardionex-uspi-v2
 ---
 
-# CARDIONEX (cardionexib) Prescribing Information — 2025 Edition
+# CARDIONEX (cardionexib) Prescribing Information, 2025 Edition
 
 ## 1.1 Indications and Usage
 CardioNex is indicated to reduce the risk of cardiovascular death and hospitalization in adult patients with chronic heart failure with reduced ejection fraction (HFrEF).

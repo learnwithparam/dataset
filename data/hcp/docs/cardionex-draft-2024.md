@@ -8,7 +8,7 @@ country: US
 expires_at: 2024-11-30
 ---
 
-# PRE-APPROVAL INVESTIGATIONAL DRAFT — DO NOT DISTRIBUTE
+# PRE-APPROVAL INVESTIGATIONAL DRAFT: DO NOT DISTRIBUTE
 
 ## 2.1 Proposed Phase-2 Regimen
 Investigational dosing schedule evaluated in Phase-2 dose-finding cohorts: 50mg orally twice daily (100mg total daily dose).

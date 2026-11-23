@@ -7,10 +7,10 @@ effective_date: 2026-09-15
 country: US
 ---
 
-# CARDIONEX (cardionexib) Prescribing Information — September 2026 Revision
+# CARDIONEX (cardionexib) Prescribing Information, September 2026 Revision
 
 ## 0.0 Boxed Warning and Contraindications
-- **BOXED WARNING — FETAL TOXICITY:** When pregnancy is detected, discontinue CardioNex as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus.
+- **BOXED WARNING: FETAL TOXICITY:** When pregnancy is detected, discontinue CardioNex as soon as possible. Drugs that act directly on the renin-angiotensin system can cause injury and death to the developing fetus.
 - **CONTRAINDICATIONS:**
   - Concomitant use with ACE inhibitors is contraindicated due to angioedema risk. Allow a strict **36-hour washout period** when switching from an ACE inhibitor to CardioNex.
   - Contraindicated in patients with end-stage renal disease (ESRD) requiring dialysis.
