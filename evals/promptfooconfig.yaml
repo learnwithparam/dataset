@@ -1,8 +1,10 @@
 description: "HCP Enterprise Agentic System — Comprehensive Golden Set Verification"
 
+# Baseline: a bare model with no retrieval and no agent, so the cases start red.
+# Swap this for the agent provider once the agent exists.
 providers:
-  - id: file://apps/hcp-showcase/src/promptfoo-provider.ts
-    label: hcp-agentic-system
+  - id: openrouter:nvidia/nemotron-3.5-lightning
+    label: baseline-no-agent
 
 prompts:
   - "{{query}}"
@@ -12,6 +14,9 @@ defaultTest:
     tenantId: "pharma_a"
     brandId: "brand_cardionex"
     territoryId: "NE-01"
+  options:
+    # Grades the llm-rubric cases, on OpenRouter instead of promptfoo's OpenAI default.
+    provider: openrouter:anthropic/claude-haiku-5.5
   assert:
     # Global zero-leak invariants across every single test run
     - type: not-contains

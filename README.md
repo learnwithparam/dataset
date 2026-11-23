@@ -28,8 +28,11 @@ Staleness (3), positive footnotes and multi-hop answers (4), off-label and unans
 
 ## Run the evals
 
-The config points at a provider that lives in the app under test (`apps/hcp-showcase/src/promptfoo-provider.ts`), so run it from that app's repo with these files copied in:
+The config starts with a bare model and no agent, so every case fails. The goal is to build the agent until they pass.
 
-```bash
-npx promptfoo eval -c evals/promptfooconfig.yaml
-```
+1. Put `OPENROUTER_API_KEY=your-key` in a `.env` file in this folder. Git ignores it.
+2. Run `npm run eval`.
+
+Expect: the summary lists 14 cases and exits with a nonzero code.
+
+Baseline on 23 Nov 2026: 0 of 14 pass. The baseline provider is `nvidia/nemotron-3.5-lightning` and the grader is `anthropic/claude-haiku-5.5`, both on OpenRouter. When the agent exists, swap it in as the provider in `evals/promptfooconfig.yaml`.
