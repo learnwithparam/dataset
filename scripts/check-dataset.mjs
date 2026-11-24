@@ -47,6 +47,7 @@ const METADATA = {
   split: /^(train|holdout)$/,
   expectedBehavior: /^(reply|ask_follow_up|defer_question)$/,
 };
+const TEXT_ASSERT = /type: (contains|not-contains|regex|not-regex)\n\s+value: ("(?:[^"\\]|\\.)*")/g;
 const caseIds = new Set();
 const configs = [];
 for (const dir of ["evals/hcp", "evals/teammates"]) {
@@ -84,6 +85,24 @@ for (const c of configs) {
       }
       if (meta.showcase !== undefined && !/^(0\d|1\d)$/.test(meta.showcase)) fail(`${c}: case ${id} has metadata.showcase "${meta.showcase}"`);
       if (c.endsWith("medinfo.yaml") && !meta.idealAnswer) fail(`${c}: case ${id ?? name} lacks metadata.idealAnswer`);
+    }
+
+    // 5. The ideal answer passes the case's own text checks, tokens aside. An ideal answer
+    //    that breaks them teaches the judge one thing and the checks another.
+    const ideal = cs.match(/^      idealAnswer: ("(?:[^"\\]|\\.)*")$/m)?.[1];
+    if (ideal) {
+      const answer = JSON.parse(ideal);
+      const asserts = [...head.matchAll(TEXT_ASSERT), ...cs.matchAll(TEXT_ASSERT)].map((m) => [m[1], JSON.parse(m[2])]);
+      for (const [type, value] of asserts) {
+        if (/^[A-Z][A-Z_]+(:[a-z-]+)?$/.test(value)) continue;
+        const ok = {
+          contains: () => answer.includes(value),
+          "not-contains": () => !answer.includes(value),
+          regex: () => new RegExp(value).test(answer),
+          "not-regex": () => !new RegExp(value).test(answer),
+        }[type]();
+        if (!ok) fail(`${c}: case ${name} idealAnswer fails its own ${type} "${value}"`);
+      }
     }
 
     // Tokens inside contains / not-contains.
