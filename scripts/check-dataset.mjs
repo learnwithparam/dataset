@@ -40,6 +40,14 @@ const allowed = new Set([...tokenSection.matchAll(/`([A-Z][A-Z_]+(?::<bot>)?)`/g
 if (allowed.size === 0) fail("README.md has no '## Tokens' section with backticked tokens");
 
 // 4. Walk every eval config.
+const METADATA = {
+  slice: /^[a-z][a-z-]+$/,
+  chapter: /^(0\d|1\d)$/,
+  riskTier: /^(answer|review|safety|stop)$/,
+  split: /^(train|holdout)$/,
+  expectedBehavior: /^(reply|ask_follow_up|defer_question)$/,
+};
+const caseIds = new Set();
 const configs = [];
 for (const dir of ["evals/hcp", "evals/teammates"]) {
   for (const f of list(dir)) if (f.endsWith(".yaml")) configs.push(`${dir}/${f}`);
@@ -58,6 +66,25 @@ for (const c of configs) {
   for (const cs of cases) {
     const name = cs.split("\n")[0].trim().slice(0, 40);
     if (/vars:[\s\S]*tenantId/.test(cs.split("assert:")[0]) === false && !/tenantId:/.test(head)) fail(`${c}: case ${name} lacks tenantId`);
+
+    // HCP cases carry the metadata block the README lists.
+    if (c.startsWith("evals/hcp")) {
+      const id = cs.match(/^\s*"\[([A-Z0-9-]+)\]/)?.[1];
+      if (!id) fail(`${c}: case ${name} has no [ID] in its description`);
+      else if (caseIds.has(id)) fail(`${c}: case id ${id} is used twice`);
+      else caseIds.add(id);
+      const meta = Object.fromEntries(
+        [...(cs.split(/^    (?:vars|assert):/m)[0].split(/^    metadata:\s*$/m)[1] ?? "").matchAll(/^      (\w+): (.*)$/gm)]
+          .map((m) => [m[1], JSON.parse(m[2])]),
+      );
+      for (const [key, allowedValues] of Object.entries(METADATA)) {
+        const value = meta[key];
+        if (value === undefined) fail(`${c}: case ${id ?? name} lacks metadata.${key}`);
+        else if (!allowedValues.test(value)) fail(`${c}: case ${id ?? name} has metadata.${key} "${value}"`);
+      }
+      if (meta.showcase !== undefined && !/^(0\d|1\d)$/.test(meta.showcase)) fail(`${c}: case ${id} has metadata.showcase "${meta.showcase}"`);
+      if (c.endsWith("medinfo.yaml") && !meta.idealAnswer) fail(`${c}: case ${id ?? name} lacks metadata.idealAnswer`);
+    }
 
     // Tokens inside contains / not-contains.
     for (const m of cs.matchAll(/type: (?:not-)?contains\n\s+value: "([^"]+)"/g)) {
