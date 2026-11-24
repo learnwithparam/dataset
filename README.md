@@ -27,6 +27,18 @@ Every doc starts with frontmatter: `doc_id`, `tenant_id`, `brand_id`, `status` (
 
 `tenantId`, `brandId` and `country` (HCP) are set in each config's `defaultTest` and overridden per case. `territoryId` applies to the medical helper. Today is 2026-11-23 in every case.
 
+## Metadata on every HCP case
+
+Every case in `evals/hcp/` has a `metadata` block. The structure test refuses a case without it.
+
+- `slice`: the failure family it tests, such as `staleness` or `country`.
+- `chapter`: the buildcamp chapter (`00` to `19`) whose build makes it pass.
+- `riskTier`: `answer`, `review`, `safety` or `stop`.
+- `split`: `train` or `holdout`. Tune prompts on train only.
+- `expectedBehavior`: `reply`, `ask_follow_up` or `defer_question`.
+- `showcase`: optional, the chapter that demos this case live.
+- `idealAnswer`: in `medinfo.yaml`, the answer a correctness judge compares against.
+
 ## Tokens
 
 The agent must write these exact words in its answer. A token not in this list fails `npm run check`.
