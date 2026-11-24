@@ -14,10 +14,11 @@ data/hcp/
 ├── docs/       12 label, trial, FAQ and SOP docs (US, DE, JP; superseded, expired, future-dated; pharma_a and pharma_b)
 ├── sql/        two tenant schemas, with an NPI and an email that must not leak
 ├── crm/        profiles, email sends, call center log, rep notes, sample requests
-└── content/    approved claims per country and two draft emails to fact-check
+├── content/    approved claims per country and two draft emails to fact-check
+└── events/     six queued events (one delivered twice) and the adverse event email they point at
 data/teammates/ inbox, leads, prospects, receipts, bank, bugs, job posting, applications,
                 renewals, ad spend, team memory, approval policy, triggers
-evals/hcp/        medinfo (28 cases), outreach (6), fact-check (6)
+evals/hcp/        medinfo (35 cases), outreach (6), fact-check (6), a2a (5), events (6), autonomy (5)
 evals/teammates/  one file per bot, plus approvals and triggers (30 cases)
 ```
 
@@ -43,7 +44,7 @@ Every case in `evals/hcp/` has a `metadata` block. The structure test refuses a 
 
 The agent must write these exact words in its answer. A token not in this list fails `npm run check`.
 
-HCP: `OFF_LABEL_REFUSAL`, `INSUFFICIENT_CONTEXT`, `PV_ESCALATION`, `OUT_OF_SCOPE`, `NOT_APPROVED_IN_COUNTRY`, `ASK_FOLLOW_UP`, `REVIEW_REQUIRED`, `HOLD_OUTREACH`, `UNAPPROVED_CLAIM`, `NEEDS_APPROVAL`.
+HCP: `OFF_LABEL_REFUSAL`, `INSUFFICIENT_CONTEXT`, `PV_ESCALATION`, `OUT_OF_SCOPE`, `NOT_APPROVED_IN_COUNTRY`, `ASK_FOLLOW_UP`, `REVIEW_REQUIRED`, `HOLD_OUTREACH`, `UNAPPROVED_CLAIM`, `NEEDS_APPROVAL`, `INPUT_REQUIRED`, `DUPLICATE_EVENT`, `BUDGET_STOP`, `AGENT_PAUSED`.
 
 Teammates: `NEEDS_APPROVAL`, `HANDOFF:<bot>`, `ARCHIVE`, `HOLD_DRAFT`, `NO_MATCH`, `POLICY_BLOCKED`, `ASK_FOLLOW_UP`, `INSUFFICIENT_CONTEXT`.
 
@@ -61,4 +62,4 @@ Each config starts with a bare model and no agent, so the cases fail. Build the 
 
 ## Baseline
 
-On 23 Nov 2026 every suite passes 0 cases with 0 errors: medinfo 0 of 28, outreach 0 of 6, fact-check 0 of 6, and the eight teammates suites 0 of 30. That is 0 of 70.
+On 23 Nov 2026 every suite passes 0 cases with 0 errors: medinfo 0 of 28, outreach 0 of 6, fact-check 0 of 6, and the eight teammates suites 0 of 30. That is 0 of 70. The seven routing cases in medinfo and the a2a, events and autonomy suites came on 24 Nov 2026 and have no baseline run yet.

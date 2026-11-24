@@ -26,7 +26,7 @@ for (const f of list("data/hcp/docs")) {
 
 // 2. Record files: a citation [file, id] needs a data file named like `file` that holds the id.
 const recordFiles = new Map();
-for (const dir of ["data/hcp/crm", "data/hcp/content", "data/hcp/sql", "data/teammates"]) {
+for (const dir of ["data/hcp/crm", "data/hcp/content", "data/hcp/sql", "data/hcp/events", "data/teammates"]) {
   for (const f of list(dir)) {
     const key = basename(f, extname(f)).replace(/_/g, "-");
     recordFiles.set(key, read(`${dir}/${f}`));
@@ -41,7 +41,7 @@ if (allowed.size === 0) fail("README.md has no '## Tokens' section with backtick
 
 // 4. Walk every eval config.
 const METADATA = {
-  slice: /^[a-z][a-z-]+$/,
+  slice: /^[a-z][a-z0-9-]+$/,
   chapter: /^(0\d|1\d)$/,
   riskTier: /^(answer|review|safety|stop)$/,
   split: /^(train|holdout)$/,
