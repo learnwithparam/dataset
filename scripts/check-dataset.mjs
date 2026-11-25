@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, basename, extname } from "node:path";
 import { createHash } from "node:crypto";
+import { salesFacts, salesFiles } from "./gen-sales.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const problems = [];
@@ -157,6 +158,26 @@ for (const c of configs) {
       }
     }
   }
+}
+
+// 6. The sales files are the generator's output, byte for byte, and every number insights.yaml
+//    asserts is the number the files give. Hand edits to the CSVs, or a generator change that moves
+//    an answer, fail here.
+for (const [file, text] of Object.entries(salesFiles())) {
+  if (read(file) !== text) fail(`${file} differs from scripts/gen-sales.mjs: run node scripts/gen-sales.mjs`);
+}
+{
+  const facts = salesFacts();
+  const insights = read("evals/hcp/insights.yaml");
+  const caseText = (id) => insights.split(/^  - description:/m).find((c) => c.includes(`[${id}]`)) ?? "";
+  const expect = (id, values) => {
+    for (const value of values) if (!caseText(id).includes(String(value))) fail(`evals/hcp/insights.yaml: ${id} should assert ${value}, the number data/hcp/sql gives`);
+  };
+  expect("INSIGHTS-01", [facts["INSIGHTS-01"].territory, `b${facts["INSIGHTS-01"].nbrxLast4}\\`]);
+  expect("INSIGHTS-02", facts["INSIGHTS-02"].pharmaBSw02);
+  expect("INSIGHTS-04", [facts["INSIGHTS-02"].pharmaBSw02[1]]);
+  expect("INSIGHTS-05", [`b${facts["INSIGHTS-05"].trx} (`]);
+  expect("INSIGHTS-06", [facts["INSIGHTS-06"].region]);
 }
 
 if (problems.length) {

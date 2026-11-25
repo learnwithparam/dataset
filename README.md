@@ -14,13 +14,13 @@ data/hcp/
 ├── docs/       12 label, trial, FAQ and SOP docs (US, DE, JP; superseded, expired, future-dated; pharma_a and pharma_b)
 ├── labels/     the full prescribing information for a label whose docs/ file is an excerpt
 ├── pdf/        each doc printed as the two-column PDF a company receives, plus manifest.json
-├── sql/        two tenant schemas, with an NPI and an email that must not leak
+├── sql/        26 weeks of sales per company in two vendor shapes (scripts/gen-sales.mjs), with NPIs and emails that must not leak
 ├── crm/        profiles, email sends, call center log, rep notes, sample requests, answers sent
 ├── content/    approved claims per country and two draft emails to fact-check
 └── events/     six queued events (one delivered twice) and the adverse event email they point at
 data/teammates/ inbox, leads, prospects, receipts, bank, bugs, job posting, applications,
                 renewals, ad spend, team memory, approval policy, triggers
-evals/hcp/        medinfo (38 cases), outreach (6), fact-check (6), a2a (5), events (6), autonomy (5)
+evals/hcp/        medinfo (38 cases), outreach (6), fact-check (6), a2a (5), events (6), autonomy (5), insights (7)
 evals/teammates/  one file per bot, plus approvals and triggers (30 cases)
 ```
 
@@ -30,7 +30,7 @@ Every doc starts with frontmatter: `doc_id`, `tenant_id`, `brand_id`, `status` (
 
 ## Vars on every case
 
-`tenantId`, `brandId` and `country` (HCP) are set in each config's `defaultTest` and overridden per case. `territoryId` applies to the medical helper. Today is 2026-11-23 in every case.
+`tenantId`, `brandId` and `country` (HCP) are set in each config's `defaultTest` and overridden per case. `territoryId` applies to the medical helper. `role` (`analyst` or `doctor`) applies to the insights cases. Today is 2026-11-23 in every case.
 
 ## Metadata on every HCP case
 
@@ -43,6 +43,10 @@ Every case in `evals/hcp/` has a `metadata` block. The structure test refuses a 
 - `expectedBehavior`: `reply`, `ask_follow_up` or `defer_question`.
 - `showcase`: optional, the chapter that demos this case live.
 - `idealAnswer`: in `medinfo.yaml`, the answer a correctness judge compares against.
+
+## Sales data
+
+`node scripts/gen-sales.mjs` writes both files in `data/hcp/sql/` from a fixed seed. Pharma A sends one row per prescriber per week with an NPI. Pharma B sends one row per prescriber per month with an email. Three cells hold fewer than 11 prescribers, so a BI view must hide them. `npm run check` fails when a file differs from the generator, or when an insights case asserts a number the files do not give.
 
 ## Tokens
 
@@ -66,4 +70,4 @@ Each config starts with a bare model and no agent, so the cases fail. Build the 
 
 ## Baseline
 
-On 23 Nov 2026 every suite passes 0 cases with 0 errors: medinfo 0 of 28, outreach 0 of 6, fact-check 0 of 6, and the eight teammates suites 0 of 30. That is 0 of 70. The seven routing cases in medinfo and the a2a, events and autonomy suites came on 24 Nov 2026 and have no baseline run yet.
+On 23 Nov 2026 every suite passes 0 cases with 0 errors: medinfo 0 of 28, outreach 0 of 6, fact-check 0 of 6, and the eight teammates suites 0 of 30. That is 0 of 70. The seven routing cases in medinfo and the a2a, events and autonomy suites came on 24 Nov 2026, and the insights suite on 25 Nov 2026. They have no baseline run yet.
