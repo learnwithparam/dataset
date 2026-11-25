@@ -2,6 +2,7 @@
 // Fails when a doc, a citation, a token or an eval config breaks the contract in README.md.
 import { readdirSync, readFileSync } from "node:fs";
 import { join, basename, extname } from "node:path";
+import { createHash } from "node:crypto";
 
 const root = new URL("..", import.meta.url).pathname;
 const problems = [];
@@ -12,6 +13,7 @@ const list = (dir) => readdirSync(join(root, dir)).sort();
 // 1. Every HCP doc has the six frontmatter keys. Collect doc_id -> section numbers.
 const REQUIRED = ["doc_id", "tenant_id", "brand_id", "status", "effective_date", "country"];
 const docs = new Map();
+const labelSources = list("data/hcp/labels");
 for (const f of list("data/hcp/docs")) {
   const text = read(`data/hcp/docs/${f}`);
   const fm = text.match(/^---\n([\s\S]*?)\n---/);
@@ -21,8 +23,35 @@ for (const f of list("data/hcp/docs")) {
   );
   for (const k of REQUIRED) if (!keys[k]) fail(`docs/${f}: frontmatter lacks ${k}`);
   const sections = [...text.matchAll(/^#{2,3}\s+([\d.]+)\s/gm)].map((m) => m[1]);
-  docs.set(keys.doc_id, sections);
+  // A full label in data/hcp/labels/ adds sections the excerpt leaves out; a case may cite them.
+  const full = labelSources.includes(f) ? read(`data/hcp/labels/${f}`) : "";
+  docs.set(keys.doc_id, [...sections, ...[...full.matchAll(/^#{2,3}\s+([\d.]+)\s/gm)].map((m) => m[1])]);
+  checkFullLabel(f, text, full);
 }
+
+// 1b. The PDFs (data/hcp/pdf) are what a company really receives. Each doc has one, printed
+//     from its current source (the sha256 in the manifest), and a full label keeps every
+//     section of its excerpt word for word, so the two never tell a doctor different things.
+function checkFullLabel(f, excerpt, full) {
+  if (!full) return;
+  const body = (t) => t.replace(/^---\n[\s\S]*?\n---\n/, "");
+  const fullSections = new Map(body(full).split(/^(?=## )/m).map((s) => [s.split("\n")[0], s.trim()]));
+  for (const section of body(excerpt).split(/^(?=## )/m).filter((s) => s.startsWith("## "))) {
+    if (fullSections.get(section.split("\n")[0]) !== section.trim()) fail(`labels/${f}: section "${section.split("\n")[0]}" differs from docs/${f}`);
+  }
+  if (excerpt.match(/^---\n[\s\S]*?\n---/)[0] !== full.match(/^---\n[\s\S]*?\n---/)?.[0]) fail(`labels/${f}: frontmatter differs from docs/${f}`);
+}
+const manifest = JSON.parse(read("data/hcp/pdf/manifest.json")).docs;
+const pdfs = new Set(list("data/hcp/pdf").filter((f) => f.endsWith(".pdf")));
+for (const f of list("data/hcp/docs")) {
+  const entry = manifest.find((d) => d.pdf === `data/hcp/pdf/${f.replace(/\.md$/, ".pdf")}`);
+  if (!entry) { fail(`pdf/manifest.json: no PDF for docs/${f}`); continue; }
+  if (!pdfs.has(basename(entry.pdf))) fail(`${entry.pdf} is missing`);
+  const source = labelSources.includes(f) ? `data/hcp/labels/${f}` : `data/hcp/docs/${f}`;
+  if (entry.source !== source) fail(`${entry.pdf} was printed from ${entry.source}, expected ${source}`);
+  else if (entry.sha256 !== createHash("sha256").update(read(source)).digest("hex")) fail(`${entry.pdf} is older than ${source}: run node scripts/build-pdfs.mjs`);
+}
+if (manifest.length !== list("data/hcp/docs").length) fail("pdf/manifest.json lists a doc that is not in data/hcp/docs");
 
 // 2. Record files: a citation [file, id] needs a data file named like `file` that holds the id.
 const recordFiles = new Map();
@@ -42,7 +71,7 @@ if (allowed.size === 0) fail("README.md has no '## Tokens' section with backtick
 // 4. Walk every eval config.
 const METADATA = {
   slice: /^[a-z][a-z0-9-]+$/,
-  chapter: /^(0\d|1\d)$/,
+  chapter: /^[012]\d$/,
   riskTier: /^(answer|review|safety|stop)$/,
   split: /^(train|holdout)$/,
   expectedBehavior: /^(reply|ask_follow_up|defer_question)$/,
@@ -83,7 +112,7 @@ for (const c of configs) {
         if (value === undefined) fail(`${c}: case ${id ?? name} lacks metadata.${key}`);
         else if (!allowedValues.test(value)) fail(`${c}: case ${id ?? name} has metadata.${key} "${value}"`);
       }
-      if (meta.showcase !== undefined && !/^(0\d|1\d)$/.test(meta.showcase)) fail(`${c}: case ${id} has metadata.showcase "${meta.showcase}"`);
+      if (meta.showcase !== undefined && !/^[012]\d$/.test(meta.showcase)) fail(`${c}: case ${id} has metadata.showcase "${meta.showcase}"`);
       if (c.endsWith("medinfo.yaml") && !meta.idealAnswer) fail(`${c}: case ${id ?? name} lacks metadata.idealAnswer`);
     }
 

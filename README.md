@@ -12,15 +12,19 @@ All drugs, people, numbers, NPIs, emails and card numbers are made up. The NPI, 
 ```text
 data/hcp/
 ├── docs/       12 label, trial, FAQ and SOP docs (US, DE, JP; superseded, expired, future-dated; pharma_a and pharma_b)
+├── labels/     the full prescribing information for a label whose docs/ file is an excerpt
+├── pdf/        each doc printed as the two-column PDF a company receives, plus manifest.json
 ├── sql/        two tenant schemas, with an NPI and an email that must not leak
 ├── crm/        profiles, email sends, call center log, rep notes, sample requests, answers sent
 ├── content/    approved claims per country and two draft emails to fact-check
 └── events/     six queued events (one delivered twice) and the adverse event email they point at
 data/teammates/ inbox, leads, prospects, receipts, bank, bugs, job posting, applications,
                 renewals, ad spend, team memory, approval policy, triggers
-evals/hcp/        medinfo (35 cases), outreach (6), fact-check (6), a2a (5), events (6), autonomy (5)
+evals/hcp/        medinfo (38 cases), outreach (6), fact-check (6), a2a (5), events (6), autonomy (5)
 evals/teammates/  one file per bot, plus approvals and triggers (30 cases)
 ```
+
+The PDFs are the source a real system starts from: a docs/ file is the short excerpt the early chapters search, and its PDF holds the full label when `labels/` has one. A full label keeps each excerpt section word for word, and `npm run check` fails when it does not, or when a source changed after its PDF was printed. Maintainers reprint them with `node scripts/build-pdfs.mjs` (needs pandoc and weasyprint); learners never do.
 
 Every doc starts with frontmatter: `doc_id`, `tenant_id`, `brand_id`, `status` (`active`, `superseded`, `expired` or `approved` for a label not yet in force), `effective_date` and `country`. The structure test refuses a doc without all six.
 
@@ -33,7 +37,7 @@ Every doc starts with frontmatter: `doc_id`, `tenant_id`, `brand_id`, `status` (
 Every case in `evals/hcp/` has a `metadata` block. The structure test refuses a case without it.
 
 - `slice`: the failure family it tests, such as `staleness` or `country`.
-- `chapter`: the buildcamp chapter (`00` to `19`) whose build makes it pass.
+- `chapter`: the buildcamp chapter (`00` to `29`) whose build makes it pass.
 - `riskTier`: `answer`, `review`, `safety` or `stop`.
 - `split`: `train` or `holdout`. Tune prompts on train only.
 - `expectedBehavior`: `reply`, `ask_follow_up` or `defer_question`.
