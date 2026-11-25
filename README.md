@@ -13,7 +13,7 @@ All drugs, people, numbers, NPIs, emails and card numbers are made up. The NPI, 
 data/hcp/
 ├── docs/       12 label, trial, FAQ and SOP docs (US, DE, JP; superseded, expired, future-dated; pharma_a and pharma_b)
 ├── sql/        two tenant schemas, with an NPI and an email that must not leak
-├── crm/        profiles, email sends, call center log, rep notes, sample requests
+├── crm/        profiles, email sends, call center log, rep notes, sample requests, answers sent
 ├── content/    approved claims per country and two draft emails to fact-check
 └── events/     six queued events (one delivered twice) and the adverse event email they point at
 data/teammates/ inbox, leads, prospects, receipts, bank, bugs, job posting, applications,
