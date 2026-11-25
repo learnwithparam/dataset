@@ -1,0 +1,17 @@
+/* The look of a printed prescribing information leaflet: A4, two columns, small type. */
+@page {
+  size: A4;
+  margin: 16mm 14mm 18mm;
+  @bottom-center { content: "Page " counter(page) " of " counter(pages); font: 7pt Helvetica, Arial, sans-serif; color: #444; }
+}
+html, body { max-width: none; margin: 0; padding: 0; }
+body { font: 8.4pt/1.32 Helvetica, Arial, sans-serif; color: #111; columns: 2; column-gap: 7mm; }
+h1 { column-span: all; font-size: 11pt; line-height: 1.25; border-bottom: 1.5pt solid #111; padding-bottom: 2mm; margin: 0 0 4mm; }
+.meta { column-span: all; font-size: 7.4pt; color: #333; margin: -2mm 0 4mm; }
+h2 { font-size: 9pt; margin: 3.2mm 0 1.2mm; break-after: avoid; }
+p, ul { margin: 0 0 1.6mm; }
+ul { padding-left: 4mm; }
+table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 6.4pt; break-inside: avoid; margin: 1mm 0 1.6mm; }
+th, td { border: 0.5pt solid #555; padding: 0.8mm 1mm; text-align: left; vertical-align: top; overflow-wrap: break-word; }
+th:first-child { width: 30%; }
+th { background: #e8e8e8; }
