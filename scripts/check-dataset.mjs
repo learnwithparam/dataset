@@ -4,6 +4,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join, basename, extname } from "node:path";
 import { createHash } from "node:crypto";
 import { salesFacts, salesFiles } from "./gen-sales.mjs";
+import { checkSpl } from "./spl.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const problems = [];
@@ -179,6 +180,9 @@ for (const [file, text] of Object.entries(salesFiles())) {
   expect("INSIGHTS-05", [`b${facts["INSIGHTS-05"].trx} (`]);
   expect("INSIGHTS-06", [facts["INSIGHTS-06"].region]);
 }
+
+// 7. Label history (DailyMed set-id shape) and the SPL XML of each US label. See scripts/spl.mjs.
+for (const p of checkSpl()) fail(p);
 
 if (problems.length) {
   console.error(problems.map((p) => `FAIL ${p}`).join("\n"));
