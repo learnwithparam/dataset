@@ -3,6 +3,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, basename, extname } from "node:path";
 import { createHash } from "node:crypto";
+import { inflateSync } from "node:zlib";
 import { salesFacts, salesFiles } from "./gen-sales.mjs";
 import { checkSpl } from "./spl.mjs";
 import { phiFiles, PHI_TYPES } from "./gen-phi-notes.mjs";
@@ -44,12 +45,30 @@ function checkFullLabel(f, excerpt, full) {
   }
   if (excerpt.match(/^---\n[\s\S]*?\n---/)[0] !== full.match(/^---\n[\s\S]*?\n---/)?.[0]) fail(`labels/${f}: frontmatter differs from docs/${f}`);
 }
+// A label PDF is tagged (PDF/UA): each heading, paragraph and table cell is marked in the order
+// it was written, and the course reads those tags. An untagged PDF has only positions on the page,
+// and reading a wrapped table cell from positions scrambles its row. The tag tree's root sits in a
+// compressed object stream, so each stream is inflated to find it.
+function isTagged(bytes) {
+  if (bytes.includes("/StructTreeRoot")) return true;
+  for (let at = bytes.indexOf("stream"); at >= 0; at = bytes.indexOf("stream", at + 6)) {
+    const start = at + (bytes[at + 6] === 0x0d ? 8 : 7);
+    const end = bytes.indexOf("endstream", start);
+    if (end < 0) break;
+    try {
+      if (inflateSync(bytes.subarray(start, end)).includes("/StructTreeRoot")) return true;
+    } catch {}
+    at = end;
+  }
+  return false;
+}
 const manifest = JSON.parse(read("data/hcp/pdf/manifest.json")).docs;
 const pdfs = new Set(list("data/hcp/pdf").filter((f) => f.endsWith(".pdf")));
 for (const f of list("data/hcp/docs")) {
   const entry = manifest.find((d) => d.pdf === `data/hcp/pdf/${f.replace(/\.md$/, ".pdf")}`);
   if (!entry) { fail(`pdf/manifest.json: no PDF for docs/${f}`); continue; }
   if (!pdfs.has(basename(entry.pdf))) fail(`${entry.pdf} is missing`);
+  else if (!isTagged(readFileSync(join(root, entry.pdf)))) fail(`${entry.pdf} is not tagged: run node scripts/build-pdfs.mjs`);
   const source = labelSources.includes(f) ? `data/hcp/labels/${f}` : `data/hcp/docs/${f}`;
   if (entry.source !== source) fail(`${entry.pdf} was printed from ${entry.source}, expected ${source}`);
   else if (entry.sha256 !== createHash("sha256").update(read(source)).digest("hex")) fail(`${entry.pdf} is older than ${source}: run node scripts/build-pdfs.mjs`);
