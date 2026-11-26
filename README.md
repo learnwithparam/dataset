@@ -12,7 +12,9 @@ All drugs, people, numbers, NPIs, emails and card numbers are made up. The NPI, 
 ```text
 data/hcp/
 ├── docs/       12 label, trial, FAQ and SOP docs (US, DE, JP; superseded, expired, future-dated; pharma_a and pharma_b)
-├── labels/     the full prescribing information for a label whose docs/ file is an excerpt
+├── labels/     the full document, sized like the real one (a US label runs about 11,000 words), for each docs/ excerpt
+├── history/    each label's version history in DailyMed set-id shape, listing the sections each version changed
+├── spl/        each US label as HL7 SPL XML with LOINC section codes, generated from labels/ (scripts/spl.mjs)
 ├── pdf/        each doc printed as the two-column PDF a company receives, plus manifest.json
 ├── sql/        26 weeks of sales per company in two vendor shapes (scripts/gen-sales.mjs), with NPIs and emails that must not leak
 ├── crm/        profiles, email sends, call center log, rep notes, sample requests, answers sent

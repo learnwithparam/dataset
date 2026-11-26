@@ -182,7 +182,7 @@ export const mdWords = (md) =>
     .replace(/^\s*\|?(\s*:?-{3,}:?\s*\|)+\s*:?-*:?\s*$/gm, " ").replace(/\|/g, " "));
 export const xmlWords = (xml) =>
   squash(xml.replace(/<\/?content[^>]*>/g, "").replace(/<[^>]+>/g, " ")
-    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&"));
+    .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&amp;/g, "&"));
 
 export const loadHistories = () => {
   const dir = join(root, "data/hcp/history");
