@@ -120,10 +120,10 @@ Hypoglycemia has been reported in patients with diabetes who started CardioNex w
 
 Monitor blood glucose closely in patients with diabetes during the first month of treatment and after any change in the dose of CardioNex. Tell patients with diabetes to check their glucose more often at the start, to know the symptoms of low blood sugar (sweating, shaking, hunger, confusion) and to report them. Reduce the dose of the insulin or the oral antidiabetic agent if hypoglycemia occurs. Do not stop CardioNex on the basis of one mild episode.
 
-## 5.7 Laboratory Test Interference With Natriuretic Peptide Assays
-Neprilysin breaks down B-type natriuretic peptide (BNP), so plasma BNP concentrations are higher in patients who take CardioNex, even when the heart failure itself has not worsened. A rise in BNP after CardioNex is started should therefore not be read as a sign of clinical worsening. N-terminal pro-B-type natriuretic peptide (NT-proBNP) is not a neprilysin substrate and is the preferred natriuretic peptide marker for diagnosis, risk assessment and monitoring in patients on CardioNex [see Clinical Pharmacology (12.2)].
+## 5.7 Interpretation of Renin and Aldosterone Tests
+Blockade of the AT1 receptor raises plasma renin activity and angiotensin II concentrations and lowers plasma aldosterone [see Clinical Pharmacology (12.2)]. In a patient who takes CardioNex, the aldosterone-to-renin ratio used to screen for primary aldosteronism can be falsely negative, and a high renin value does not by itself indicate renovascular disease.
 
-When a result appears to be out of line with the patient's symptoms, note on the laboratory request that the patient takes CardioNex and, where possible, request NT-proBNP.
+When such a test is needed, tell the laboratory and the requesting physician that the patient takes CardioNex, and interpret the result with that in mind. Withholding CardioNex for the test should be decided by the physician in charge, who should weigh it against the loss of benefit in heart failure.
 
 ## 5.8 Surgery and Anesthesia
 During major surgery or anesthesia, drugs that act on the renin-angiotensin system can block the compensatory response to the release of renin and so cause hypotension that is hard to treat. Tell the anesthesiologist that the patient takes CardioNex. In a planned operation under general anesthesia, consider holding CardioNex on the morning of surgery, and restart it once the patient is eating, is hemodynamically stable and has a normal serum potassium. If hypotension occurs during anesthesia, correct volume first; a vasopressor may be needed when volume correction fails.
@@ -299,7 +299,7 @@ Table 4. Clinically Relevant Drug Interactions With CardioNex
 | Loop and thiazide diuretics | Additive blood pressure lowering | Lower the diuretic dose first if hypotension occurs [see 7.8] |
 
 ## 7.11 Drug and Laboratory Test Interactions
-BNP: CardioNex raises plasma BNP concentrations because BNP is a neprilysin substrate. Use NT-proBNP when a natriuretic peptide must be measured [see Warnings and Precautions (5.7)].
+Renin and aldosterone assays: CardioNex changes plasma renin activity and aldosterone through its pharmacologic effect and can affect the result of screening tests for primary aldosteronism [see Warnings and Precautions (5.7)].
 
 Serum potassium and creatinine: CardioNex does not interfere with the laboratory methods for these two tests. The rise in potassium and creatinine that follows treatment is a pharmacologic effect and not an assay artifact. A hemolyzed blood sample can raise the measured potassium falsely; repeat a potassium that is unexpectedly high before acting on it, unless the patient has symptoms or electrocardiographic changes.
 
@@ -366,21 +366,21 @@ For an overdose, place the patient supine, give intravenous saline if there is h
 An overdose taken together with a strong CYP3A4 inhibitor can produce higher and longer exposure than the dose alone, because the half-life of cardionexib is lengthened when its metabolism is blocked [see Clinical Pharmacology (12.5)]. In this setting, extend the monitoring of blood pressure and serum potassium beyond 24 hours.
 
 ## 11 Description
-CardioNex (cardionexib) tablets contain cardionexib, an inhibitor of neprilysin and an antagonist of the angiotensin II type 1 (AT1) receptor, in a single molecule. Cardionexib is a white to off-white crystalline powder. It is practically insoluble in water at pH 7, sparingly soluble at pH 1 to 2 and freely soluble in methanol. Its molecular formula is C24H29N5O4S and its molecular weight is 483.6. It has one chiral center, and the drug substance is the single (S)-enantiomer. The partition coefficient (log P) is 3.1 at pH 7.4, and the acid dissociation constants (pKa) are 3.9 (carboxylic acid) and 5.6 (tetrazole).
+CardioNex (cardionexib) tablets contain cardionexib, a selective angiotensin II type 1 (AT1) receptor antagonist. Cardionexib is a white to off-white crystalline powder. It is practically insoluble in water at pH 7, sparingly soluble at pH 1 to 2 and freely soluble in methanol. Its molecular formula is C24H29N5O4S and its molecular weight is 483.6. It has one chiral center, and the drug substance is the single (S)-enantiomer. The partition coefficient (log P) is 3.1 at pH 7.4, and the acid dissociation constants (pKa) are 3.9 (carboxylic acid) and 5.6 (tetrazole).
 
 CardioNex is supplied for oral administration as film-coated tablets in strengths of 5 mg, 20 mg and 40 mg of cardionexib. The tablets contain the following inactive ingredients: microcrystalline cellulose, lactose monohydrate, croscarmellose sodium, hypromellose, magnesium stearate, talc and titanium dioxide. The 20 mg tablet coating also contains yellow iron oxide. The 40 mg tablet coating also contains red iron oxide and yellow iron oxide.
 
 ## 12.1 Mechanism of Action
-Cardionexib is a prodrug that is converted in the liver to its active form, cardionexib acid. Cardionexib acid has two actions. It inhibits neprilysin, the enzyme that breaks down natriuretic peptides, bradykinin and other vasoactive peptides, so that levels of these peptides rise. It also blocks the AT1 receptor, which prevents the vasoconstriction, sodium retention and aldosterone release produced by angiotensin II.
+Cardionexib is a selective antagonist of the angiotensin II type 1 (AT1) receptor. Angiotensin II is the main active hormone of the renin-angiotensin-aldosterone system. By blocking its binding to the AT1 receptor in vascular smooth muscle and in the adrenal gland, cardionexib prevents the vasoconstriction, sodium and water retention and aldosterone release that angiotensin II produces. Cardionexib has a much higher affinity for the AT1 receptor than for the AT2 receptor, and it does not inhibit the angiotensin-converting enzyme.
 
-In heart failure, the sustained activation of the renin-angiotensin-aldosterone system and the sympathetic nervous system promotes vasoconstriction, fluid retention, and remodeling of the left ventricle. Higher natriuretic peptide levels promote vasodilation, urinary sodium excretion and a lower cardiac preload, and the AT1 blockade opposes the harmful effects of angiotensin II. Both actions together are thought to account for the reduction in cardiovascular death and in hospitalization for heart failure seen in CLARION-HF [see Clinical Studies (14)].
+In heart failure, sustained activation of the renin-angiotensin-aldosterone system and the sympathetic nervous system promotes vasoconstriction, fluid retention, and remodeling of the left ventricle. Blocking the AT1 receptor opposes these effects of angiotensin II, and this action is thought to account for the reduction in cardiovascular death and in hospitalization for heart failure seen in CLARION-HF [see Clinical Studies (14)].
 
-Neprilysin also breaks down bradykinin. Higher bradykinin levels are the proposed reason for the angioedema that occurs when CardioNex is taken together with an ACE inhibitor, which also blocks bradykinin breakdown. This is the basis for the contraindication and for the 36-hour washout period [see Contraindications (4)].
+Angioedema has been reported when CardioNex is taken together with an ACE inhibitor, and the two drugs must not overlap. This is the basis for the contraindication and for the 36-hour washout period [see Contraindications (4)].
 
 ## 12.2 Pharmacodynamics
-Effects on natriuretic peptides and blood pressure: In patients with heart failure, CardioNex raised plasma cyclic guanosine monophosphate (cGMP) by about 1.5-fold and lowered N-terminal pro-B-type natriuretic peptide (NT-proBNP) compared with placebo. B-type natriuretic peptide (BNP) is a neprilysin substrate and its concentration can rise with CardioNex without a worsening of heart failure, so NT-proBNP is the better marker for monitoring a patient on CardioNex. Mean systolic blood pressure was lowered by 4 to 6 mm Hg in the first 4 weeks compared with placebo, with a peak effect 2 to 4 hours after a dose.
+Effects on renin, angiotensin II and blood pressure: In patients with heart failure, CardioNex raised plasma renin activity and plasma angiotensin II concentrations compared with placebo, as expected with blockade of the AT1 receptor. NT-proBNP was lower than on placebo during treatment. Mean systolic blood pressure was lowered by 4 to 6 mm Hg in the first 4 weeks compared with placebo, with a peak effect 2 to 4 hours after a dose.
 
-Effects on aldosterone and potassium: Blockade of the AT1 receptor lowered plasma aldosterone by about 20% from baseline at steady state and raised serum potassium by a mean of 0.3 mEq/L by week 4 in CLARION-HF [see Warnings and Precautions (5.1)]. Plasma renin activity and angiotensin II concentrations rose, as expected with receptor blockade.
+Effects on aldosterone and potassium: Blockade of the AT1 receptor lowered plasma aldosterone by about 20% from baseline at steady state and raised serum potassium by a mean of 0.3 mEq/L by week 4 in CLARION-HF [see Warnings and Precautions (5.1)].
 
 Effects on kidney function: A small fall in eGFR (a mean of 3 mL/min in the first month) was seen and did not progress. Urinary sodium excretion rose for the first 24 hours after the first dose and returned toward baseline within 1 week.
 
@@ -396,26 +396,26 @@ Table 5. Pharmacokinetic Parameters of Cardionexib in Patients With Heart Failur
 
 | Parameter | Single dose | Steady state (day 7) |
 | :--- | :--- | :--- |
-| Cmax (ng/mL), geometric mean (CV%) | 340 (28%) | 468 (31%) |
+| Cmax (ng/mL), geometric mean (CV%) | 560 (28%) | 790 (31%) |
 | Tmax (h), median (range) | 2.0 (1.0 to 4.0) | 2.0 (1.0 to 4.0) |
-| AUC0-24 (ng·h/mL), geometric mean (CV%) | 4,030 (30%) | 5,840 (33%) |
+| AUC (ng·h/mL), geometric mean (CV%): AUC0-inf after a single dose, AUC0-24 at steady state | 9,750 (30%) | 9,760 (33%) |
 | Terminal half-life (h), mean (SD) | 14.0 (2.6) | 14.2 (2.9) |
 | Accumulation ratio (AUC) | not applicable | 1.45 |
-| Apparent clearance, CL/F (L/h) | 7.4 | 6.8 |
-| Apparent volume of distribution, Vd/F (L) | 142 | 140 |
-| Plasma protein binding | 98.6% | 98.6% |
+| Apparent clearance, CL/F (L/h) | 4.1 | 4.1 |
+| Apparent volume of distribution, Vz/F (L) | 83 | 83 |
+| Plasma protein binding | 97% | 97% |
 | Fraction of dose excreted unchanged in urine | less than 5% | less than 5% |
 
-Absorption: The absolute oral bioavailability is about 62%. Peak plasma concentrations are reached about 2 hours after a dose. A high-fat, high-calorie meal lowered the peak concentration by 12% and did not change the area under the curve, so CardioNex can be taken with or without food [see Dosage and Administration (2.3)].
+Absorption: The absolute oral bioavailability is 71%. Peak plasma concentrations are reached about 2 hours after a dose. A high-fat, high-calorie meal lowered the peak concentration by 12% and did not change the area under the curve, so CardioNex can be taken with or without food [see Dosage and Administration (2.3)].
 
-Distribution: Cardionexib is highly bound to plasma proteins (98.6%), mainly to albumin, and the binding does not depend on concentration over the range of 10 to 2,000 ng/mL. The blood-to-plasma ratio is 0.7. The apparent volume of distribution at steady state is about 140 L.
+Distribution: Cardionexib is highly bound to plasma proteins (97%), mainly to albumin, and the binding does not depend on concentration over the range of 10 to 2,000 ng/mL. The blood-to-plasma ratio is 0.7. The apparent volume of distribution (Vz/F) is 83 L.
 
 Metabolism: Cardionexib is cleared mainly by metabolism in the liver. CYP3A4 accounts for about 80% of the oxidative metabolism and CYP2C8 for the remainder. Glucuronidation of the carboxylic acid is a minor route. The two main circulating metabolites, M1 and M2, each account for less than 10% of the plasma exposure of the parent drug and are not pharmacologically active.
 
 Elimination: About 78% of a radiolabeled dose was recovered in feces, mostly as metabolites, and 17% in urine, of which less than 5% of the dose was unchanged cardionexib. The terminal half-life is about 14 hours, so steady state is reached in 3 to 4 days.
 
 ## 12.5 Pharmacokinetics in Specific Populations and Drug Interaction Studies
-Renal impairment: Compared with subjects with normal kidney function, the area under the curve of cardionexib was 1.4 times higher in subjects with an eGFR of 30 to 59 mL/min/1.73 m2 and 2.3 times higher in subjects with an eGFR of 15 to 29 mL/min/1.73 m2. Cardionexib is highly protein bound and is not removed by hemodialysis. Patients on dialysis were not studied [see Use in Specific Populations (8.6)].
+Renal impairment: Compared with subjects with normal kidney function, the area under the curve of cardionexib was 1.4 times higher in subjects with an eGFR of 30 to 59 mL/min/1.73 m2 and 2.0 times higher in subjects with an eGFR of 15 to 29 mL/min/1.73 m2. Cardionexib is highly protein bound and is not removed by hemodialysis. Patients on dialysis were not studied [see Use in Specific Populations (8.6)].
 
 Hepatic impairment: The area under the curve was 18% higher in mild impairment (Child-Pugh A) and 35% higher in moderate impairment (Child-Pugh B) than in subjects with normal hepatic function. These differences do not call for a dose change. CardioNex has not been studied in severe hepatic impairment (Child-Pugh C) [see Use in Specific Populations (8.7)].
 
@@ -425,7 +425,7 @@ Table 6. Effect of Other Drugs on the Pharmacokinetics of Cardionexib
 
 | Coadministered drug (regimen) | Change in cardionexib AUC | Change in cardionexib Cmax |
 | :--- | :--- | :--- |
-| Ketoconazole (400 mg once daily, strong CYP3A4 inhibitor) | increased 3.1-fold | increased 1.9-fold |
+| Ketoconazole (400 mg once daily, strong CYP3A4 inhibitor) | increased 3.5-fold | increased 1.9-fold |
 | Clarithromycin (500 mg twice daily, strong CYP3A4 inhibitor) | increased 2.6-fold | increased 1.7-fold |
 | Rifampin (600 mg once daily, strong CYP3A4 inducer) | decreased by about 70% | decreased by about 55% |
 | Omeprazole (40 mg once daily) | no change | no change |
@@ -435,9 +435,9 @@ Table 6. Effect of Other Drugs on the Pharmacokinetics of Cardionexib
 Effect of cardionexib on other drugs: Cardionexib 40 mg once daily did not change the exposure of digoxin, warfarin (S-warfarin AUC or International Normalized Ratio), atorvastatin or metoprolol succinate in a clinically relevant way. Cardionexib is a weak inhibitor of OATP1B1 in vitro; the clinical effect on atorvastatin exposure was an increase of 8% in the area under the curve. Cardionexib did not inhibit or induce CYP1A2, CYP2C9, CYP2C19, CYP2D6 or CYP3A4 at clinically relevant concentrations [see Drug Interactions (7)].
 
 ## 12.6 In Vitro Studies
-Cardionexib is a substrate of CYP3A4, and to a minor extent of CYP2C8. In vitro, cardionexib is a substrate of P-glycoprotein but not of breast cancer resistance protein (BCRP). Cardionexib acid is a substrate of the hepatic uptake transporter OATP1B1. Cardionexib and its main metabolites did not inhibit CYP1A2, CYP2B6, CYP2C9, CYP2C19, CYP2D6 or CYP3A4 at concentrations up to 50 micromolar. At concentrations up to 10 micromolar, cardionexib did not induce CYP1A2, CYP2B6 or CYP3A4 in human hepatocytes. Cardionexib is a weak inhibitor of OATP1B1 and OAT3, and the clinical relevance of this effect was checked in the interaction study with atorvastatin [see Clinical Pharmacology (12.5)].
+Cardionexib is a substrate of CYP3A4, and to a minor extent of CYP2C8. In vitro, cardionexib is a substrate of P-glycoprotein but not of breast cancer resistance protein (BCRP). Cardionexib is a substrate of the hepatic uptake transporter OATP1B1. Cardionexib and its main metabolites did not inhibit CYP1A2, CYP2B6, CYP2C9, CYP2C19, CYP2D6 or CYP3A4 at concentrations up to 50 micromolar. At concentrations up to 10 micromolar, cardionexib did not induce CYP1A2, CYP2B6 or CYP3A4 in human hepatocytes. Cardionexib is a weak inhibitor of OATP1B1 and OAT3, and the clinical relevance of this effect was checked in the interaction study with atorvastatin [see Clinical Pharmacology (12.5)].
 
-In human plasma, cardionexib acid is 98.6% bound to proteins. Binding was not displaced by warfarin, digoxin or furosemide at therapeutic concentrations.
+In human plasma, cardionexib is 97% bound to proteins. Binding was not displaced by warfarin, digoxin or furosemide at therapeutic concentrations.
 
 ## 12.7 Exposure-Response Relationships
 In a population analysis of CLARION-HF, the reduction in the risk of the primary outcome rose with exposure over the range reached by doses of 20 mg and 40 mg, and the fall in systolic blood pressure, the rise in serum potassium and the rise in serum creatinine were also exposure related. The higher exposure of patients with a lower eGFR and of patients who take a strong CYP3A4 inhibitor is the reason for the dose limits in the dosing table in Dosage and Administration (2.2). Exposure above the range seen at the target dose has not been tested in an outcome trial.
@@ -450,7 +450,7 @@ Table 14. Effect of Intrinsic Factors on Cardionexib Exposure
 | Factor | Group compared | Reference group | AUC ratio | Dose change for this factor alone |
 | :--- | :--- | :--- | :--- | :--- |
 | Kidney function | eGFR 30 to 59 mL/min/1.73 m2 | eGFR 90 or more | 1.4 | See the dosing table in 2.2 |
-| Kidney function | eGFR 15 to 29 mL/min/1.73 m2 | eGFR 90 or more | 2.3 | See the dosing table in 2.2 |
+| Kidney function | eGFR 15 to 29 mL/min/1.73 m2 | eGFR 90 or more | 2.0 | See the dosing table in 2.2 |
 | Liver function | Child-Pugh A | Normal | 1.18 | None |
 | Liver function | Child-Pugh B | Normal | 1.35 | None |
 | Age | 65 years or older | Younger than 65 years | about 1.2 | None |
@@ -542,7 +542,7 @@ Patients who were 75 years or older had the highest absolute event rates, and th
 Patients on dialysis, patients with an eGFR below 30 mL/min, patients with an LVEF above 40%, pregnant women and patients younger than 18 years were not enrolled in CLARION-HF. No efficacy conclusion can be drawn for them from the trial. For patients with an eGFR below 30 mL/min who are not on dialysis, the dosing table in Dosage and Administration (2.2) rests on pharmacokinetic data [see Clinical Pharmacology (12.5)]. CardioNex is contraindicated in patients on dialysis [see Contraindications (4)].
 
 ## 14.8 Effect on NT-proBNP
-In a prespecified biomarker substudy of 1,150 patients in CLARION-HF, the geometric mean NT-proBNP fell by 24% from baseline to week 8 on CardioNex and by 4% on placebo (ratio of geometric means 0.79; 95% CI, 0.72 to 0.86). The difference was maintained at 12 months. Because BNP can rise on CardioNex, NT-proBNP was used in the substudy [see Warnings and Precautions (5.7)].
+In a prespecified biomarker substudy of 1,150 patients in CLARION-HF, the geometric mean NT-proBNP fell by 24% from baseline to week 8 on CardioNex and by 4% on placebo (ratio of geometric means 0.79; 95% CI, 0.72 to 0.86). The difference was maintained at 12 months.
 
 ## 14.9 Absolute Effect and Patient-Reported Outcomes
 Absolute effect: The absolute difference in the rate of the primary outcome was 4.9 percentage points (19.1% on placebo and 14.2% on CardioNex), over a median follow-up of 26 months. This corresponds to about 21 patients treated for the median follow-up to prevent one primary-outcome event. The number needed to treat depends on the baseline risk of the patient and on the length of treatment.
