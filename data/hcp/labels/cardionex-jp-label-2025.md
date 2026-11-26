@@ -294,15 +294,18 @@ Blood pressure fell by a mean of 5 mmHg in systolic pressure from baseline at we
 At week 52, 86% of the Japanese patients on CardioNex were taking 20 mg once daily, and the NT-proBNP ratio against placebo at week 52 was 0.80 (95% CI 0.70 to 0.91). In patients who stayed on 10 mg once daily because of the results of the checks in 5.1, the ratio was 0.88. No patient group was excluded from the analysis on the basis of the dose actually taken, and the analysis followed the intention-to-treat principle.
 
 ## 12.1 Mechanism of action
-Cardionexib is a selective, orally active antagonist of the angiotensin II type 1 receptor. It blocks vasoconstriction, sodium and water retention and aldosterone release driven by angiotensin II, and so lowers the load on the failing heart. The reduced aldosterone effect leads to a rise in serum potassium. It does not inhibit angiotensin-converting enzyme.
+Cardionexib is a single molecule, not a prodrug, that is both a selective, orally active antagonist of the angiotensin II type 1 (AT1) receptor and an inhibitor of neprilysin. Receptor blockade reduces vasoconstriction, sodium and water retention and aldosterone release driven by angiotensin II. Neprilysin inhibition slows the breakdown of natriuretic peptides and so raises their vasodilating and natriuretic effects. Together they lower the load on the failing heart. The reduced aldosterone effect leads to a rise in serum potassium. Cardionexib does not inhibit angiotensin-converting enzyme. Neprilysin and ACE both break down bradykinin, so bradykinin can build up when both are inhibited. This is the reason for the angioedema risk, for the contraindication with ACE inhibitors and for the 36-hour interval after the last ACE inhibitor dose stated in 4.1.
 
 ## 12.2 Pharmacological effects
 - In patients with heart failure, CardioNex lowered mean systolic blood pressure by 4 to 7 mmHg and lowered NT-proBNP in a dose-dependent way.
 - Plasma renin activity and angiotensin II rose, as expected with receptor blockade.
+- Natriuretic peptide levels and urinary cGMP rose in a dose-dependent way through neprilysin inhibition, with a rise in urinary sodium excretion.
+- Neprilysin also breaks down BNP, so BNP is not a reliable marker of heart failure during treatment and rises on CardioNex. NT-proBNP is not affected in this way and should be used instead.
 - In a thorough QT study in healthy volunteers at doses up to 160 mg, there was no clinically relevant effect on heart rate or QTc.
 
 ## 12.3 Non-clinical pharmacology
 - In rats with induced heart failure, cardionexib lowered left ventricular end-diastolic pressure, reduced cardiac fibrosis and improved survival compared with the vehicle.
+- In enzyme assays, cardionexib inhibited neprilysin in the nanomolar range, with no inhibition of angiotensin-converting enzyme at concentrations above those reached in patients.
 - In isolated tissue assays, cardionexib showed more than 10,000-fold selectivity for the angiotensin II type 1 receptor over the type 2 receptor.
 - In dogs, cardionexib lowered blood pressure in a dose-dependent way, with a rise in plasma renin activity and in serum potassium.
 - In safety pharmacology studies, no effect on respiratory function, central nervous system function or gastrointestinal motility was seen at exposures above those in humans.

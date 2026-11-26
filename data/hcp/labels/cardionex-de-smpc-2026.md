@@ -95,7 +95,7 @@ Switching from an ACE inhibitor: The ACE inhibitor must be stopped, and the firs
 - Do not use in patients on dialysis.
 
 ## 4.3.1 Notes on the contraindications
-ACE inhibitors: The contraindication is based on the risk of angioedema when both medicines act on the renin-angiotensin system within a short time. The interval of 48 hours after the last ACE inhibitor dose, stated in section 4.3, is the interval for Germany. A prescriber who finds a different interval in the labelling of another country should follow the German labelling for patients treated in Germany.
+ACE inhibitors: The contraindication is based on the risk of angioedema. Neprilysin and ACE both break down bradykinin, so bradykinin can build up when both are inhibited within a short time. The interval of 48 hours after the last ACE inhibitor dose, stated in section 4.3, is the interval for Germany. A prescriber who finds a different interval in the labelling of another country should follow the German labelling for patients treated in Germany.
 
 Dialysis: Patients on dialysis were not studied, and cardionexib is not removed by haemodialysis, so a dose cannot be corrected by timing it around a session. The contraindication in section 4.3 therefore applies to all dialysis patients, whatever their residual kidney function.
 
@@ -271,15 +271,15 @@ Experience of overdose in humans is limited. In healthy volunteers, single doses
 The most likely effect of an overdose is low blood pressure. If symptomatic hypotension occurs, the patient should be placed supine, and supportive treatment, including intravenous fluids, should be given. Serum potassium and renal function should be checked, because hyperkalaemia and a fall in renal function may follow. Cardionexib is highly protein bound (about 97%) and is not removed by haemodialysis.
 
 ## 5.1 Pharmacodynamic properties
-Pharmacotherapeutic group: agents acting on the renin-angiotensin system; angiotensin II receptor antagonists, plain. ATC code: C09CA99.
+Pharmacotherapeutic group: agents acting on the renin-angiotensin system; angiotensin II receptor blockers, other combinations. ATC code: C09DX99.
 
 Mechanism of action
 
-Cardionexib is a selective, orally active antagonist of the angiotensin II type 1 receptor. By blocking the receptor, it reduces vasoconstriction, sodium and water retention and aldosterone release driven by angiotensin II, which lowers the load on the failing heart. The reduced aldosterone effect also explains the rise in serum potassium seen with treatment [see section 4.4.1]. Cardionexib does not inhibit angiotensin-converting enzyme. Because angioedema has been linked to the combination with ACE inhibitors, the combination is contraindicated [see section 4.3].
+Cardionexib is a single molecule, not a prodrug, that is both a selective, orally active antagonist of the angiotensin II type 1 (AT1) receptor and an inhibitor of neprilysin. By blocking the AT1 receptor, it reduces vasoconstriction, sodium and water retention and aldosterone release driven by angiotensin II. By inhibiting neprilysin, it slows the breakdown of natriuretic peptides, which raises their levels and their effects (vasodilation, natriuresis and diuresis) and lowers the load on the failing heart. The reduced aldosterone effect also explains the rise in serum potassium seen with treatment [see section 4.4.1]. Cardionexib does not inhibit angiotensin-converting enzyme. Neprilysin and ACE both break down bradykinin, so inhibiting neprilysin while ACE is also inhibited lets bradykinin build up, which is the mechanism behind angioedema. This is why the combination with ACE inhibitors, and any dose within 48 hours of the last ACE inhibitor dose, is contraindicated [see section 4.3].
 
 Pharmacodynamic effects
 
-In patients with heart failure, single and repeated doses lowered mean systolic blood pressure by 4 to 7 mmHg, with the largest effect 2 to 4 hours after the dose, and lowered NT-proBNP in a dose-dependent way. Plasma renin activity and plasma angiotensin II rose, as expected with receptor blockade. There was no clinically relevant effect on heart rate or on the QTc interval at doses up to 160 mg in a thorough QT study.
+In patients with heart failure, single and repeated doses lowered mean systolic blood pressure by 4 to 7 mmHg, with the largest effect 2 to 4 hours after the dose, and lowered NT-proBNP in a dose-dependent way. Plasma renin activity and plasma angiotensin II rose, as expected with receptor blockade. Through neprilysin inhibition, natriuretic peptide levels rose and urinary cyclic guanosine monophosphate (cGMP) rose in a dose-dependent way, with a rise in urinary sodium excretion. Because neprilysin also breaks down BNP, BNP is not a reliable marker of heart failure in patients on CardioNex and rises on treatment, whereas NT-proBNP is not a neprilysin substrate and can be used to follow the patient. There was no clinically relevant effect on heart rate or on the QTc interval at doses up to 160 mg in a thorough QT study.
 
 Clinical efficacy and safety
 
