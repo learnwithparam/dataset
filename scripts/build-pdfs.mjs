@@ -31,7 +31,9 @@ for (const file of readdirSync(join(root, "data/hcp/docs")).filter((f) => f.ends
   writeFileSync(md, lines.join("\n"));
   const html = join(work, file.replace(/\.md$/, ".html"));
   execFileSync("pandoc", [md, "-f", "gfm", "-t", "html5", "-s", "--metadata", `pagetitle=${meta.doc_id}`, "-o", html]);
-  execFileSync("weasyprint", ["-s", css, html, join(root, pdf)]);
+  // PDF/UA-1 tags each heading, paragraph and table cell, as a label PDF made for screen
+  // readers is. A reader then takes the text in the order it was written, not from positions.
+  execFileSync("weasyprint", ["--pdf-variant", "pdf/ua-1", "-s", css, html, join(root, pdf)]);
   docs.push({ ...meta, pdf, source, sha256: createHash("sha256").update(text).digest("hex") });
   console.log(`printed ${pdf}`);
 }
