@@ -17,12 +17,15 @@ data/hcp/
 ├── sql/        26 weeks of sales per company in two vendor shapes (scripts/gen-sales.mjs), with NPIs and emails that must not leak
 ├── crm/        profiles, email sends, call center log, rep notes, sample requests, answers sent
 ├── content/    approved claims per country and two draft emails to fact-check
-└── events/     six queued events (one delivered twice) and the adverse event email they point at
+├── events/     six queued events (one delivered twice) and the adverse event email they point at
+└── safety/     a fictional MedDRA-style dictionary, 79 adverse event messages with FAERS fields, 100 PHI notes (scripts/gen-phi-notes.mjs)
 data/teammates/ inbox, leads, prospects, receipts, bank, bugs, job posting, applications,
                 renewals, ad spend, team memory, approval policy, triggers
 evals/hcp/        medinfo (38 cases), outreach (6), fact-check (6), a2a (5), events (6), autonomy (5), insights (7)
 evals/teammates/  one file per bot, plus approvals and triggers (30 cases)
 ```
+
+In `safety/`, the PHI notes mark only patient identifiers (name, date of birth, record number, phone, email, address, national ID); the doctor's own name and practice, drug names, genes, lab values, trial names and clinical dates such as "since 3 Nov" are deliberately not marked. The codes in the dictionary are invented and are not MedDRA.
 
 The PDFs are the source a real system starts from: a docs/ file is the short excerpt the early chapters search, and its PDF holds the full label when `labels/` has one. A full label keeps each excerpt section word for word, and `npm run check` fails when it does not, or when a source changed after its PDF was printed. Maintainers reprint them with `node scripts/build-pdfs.mjs` (needs pandoc and weasyprint); learners never do.
 

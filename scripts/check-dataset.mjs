@@ -5,6 +5,7 @@ import { join, basename, extname } from "node:path";
 import { createHash } from "node:crypto";
 import { salesFacts, salesFiles } from "./gen-sales.mjs";
 import { checkSpl } from "./spl.mjs";
+import { phiFiles, PHI_TYPES } from "./gen-phi-notes.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
 const problems = [];
@@ -181,7 +182,107 @@ for (const [file, text] of Object.entries(salesFiles())) {
   expect("INSIGHTS-06", [facts["INSIGHTS-06"].region]);
 }
 
-// 7. Label history (DailyMed set-id shape) and the SPL XML of each US label. See scripts/spl.mjs.
+// 7. Safety data (data/hcp/safety). The dictionary links resolve, every adverse event message is
+//    complete and coded with codes the dictionary holds, the counts the lessons rely on hold, and
+//    the PHI notes are the generator's output with every span pointing at its own text.
+{
+  const dict = JSON.parse(read("data/hcp/safety/meddra-synthetic.json"));
+  const socs = new Map(), pts = new Map(), llts = new Map();
+  const unique = (kind, map, rows, re) => {
+    for (const r of rows) {
+      if (!re.test(r.code ?? "")) fail(`meddra-synthetic.json: ${kind} code "${r.code}" is not in its fictional range`);
+      if (map.has(r.code)) fail(`meddra-synthetic.json: ${kind} code ${r.code} is used twice`);
+      map.set(r.code, r);
+    }
+  };
+  unique("soc", socs, dict.soc, /^900\d{5}$/);
+  unique("pt", pts, dict.pt, /^91[01]\d{5}$/);
+  unique("llt", llts, dict.llt, /^92\d{6}$/);
+  for (const p of dict.pt) if (!socs.has(p.soc)) fail(`meddra-synthetic.json: PT ${p.code} points at SOC ${p.soc}, which does not exist`);
+  for (const l of dict.llt) if (!pts.has(l.pt)) fail(`meddra-synthetic.json: LLT ${l.code} points at PT ${l.pt}, which does not exist`);
+  for (const p of dict.pt) if (!dict.llt.some((l) => l.pt === p.code && l.name === p.name)) fail(`meddra-synthetic.json: PT ${p.code} ${p.name} has no LLT of its own name`);
+  if (dict.soc.length < 20 || dict.pt.length < 120 || dict.llt.length < 300) fail(`meddra-synthetic.json: needs at least 20 SOCs, 120 PTs and 300 LLTs, has ${dict.soc.length}, ${dict.pt.length}, ${dict.llt.length}`);
+
+  const FLAGS = { death: "seriousnessdeath", life_threatening: "seriousnesslifethreatening", hospitalization: "seriousnesshospitalization", disabling: "seriousnessdisabling", congenital_anomaly: "seriousnesscongenitalanomali", other_medically_important: "seriousnessother" };
+  const SITUATIONS = ["pregnancy_exposure", "overdose", "medication_error", "lack_of_efficacy", "off_label_use"];
+  const reports = read("data/hcp/safety/ae-reports.jsonl").trim().split("\n").map((l, i) => {
+    try { return JSON.parse(l); } catch { fail(`ae-reports.jsonl line ${i + 1}: not JSON`); return {}; }
+  });
+  const ids = new Set();
+  for (const r of reports) {
+    const at = `ae-reports.jsonl ${r.id}`;
+    if (!/^ae-\d{3}$/.test(r.id)) fail(`${at}: bad id`);
+    if (ids.has(r.id)) fail(`${at}: id used twice`);
+    ids.add(r.id);
+    if (!["pharma_a", "pharma_b"].includes(r.tenant_id)) fail(`${at}: tenant_id "${r.tenant_id}"`);
+    if (!["hcp_chat", "email", "call_center"].includes(r.channel)) fail(`${at}: channel "${r.channel}"`);
+    const sentences = (String(r.message).match(/[.?!](\s|$)/g) ?? []).length;
+    if (typeof r.message !== "string" || sentences < 1 || sentences > 6) fail(`${at}: message must hold 1 to 6 sentences`);
+    for (const k of ["is_adverse_event", "indirect", "serious"]) if (typeof r[k] !== "boolean") fail(`${at}: ${k} must be true or false`);
+    if (r.special_situation !== null && !SITUATIONS.includes(r.special_situation)) fail(`${at}: special_situation "${r.special_situation}"`);
+    for (const k of ["reporter", "patient", "product", "event"]) if (typeof r.criteria?.[k] !== "boolean") fail(`${at}: criteria.${k} must be true or false`);
+    if (!["safety", "answer", "review"].includes(r.expected_route)) fail(`${at}: expected_route "${r.expected_route}"`);
+    if ((r.is_adverse_event || r.special_situation) && r.expected_route !== "safety") fail(`${at}: an adverse event or special situation must route to safety`);
+    if (!Array.isArray(r.seriousness) || r.seriousness.some((s) => !FLAGS[s])) fail(`${at}: seriousness holds an unknown value`);
+    else if (r.serious !== r.seriousness.length > 0) fail(`${at}: serious must be true exactly when seriousness is not empty`);
+    if (!Array.isArray(r.meddra)) { fail(`${at}: meddra must be a list`); continue; }
+    for (const m of r.meddra) {
+      const llt = llts.get(m.llt);
+      if (!llt) fail(`${at}: LLT ${m.llt} is not in the dictionary`);
+      else if (llt.pt !== m.pt) fail(`${at}: LLT ${m.llt} belongs to PT ${llt.pt}, not ${m.pt}`);
+    }
+    const hasFaers = r.faers !== null;
+    if (hasFaers !== (r.is_adverse_event || r.special_situation !== null)) fail(`${at}: faers must be null exactly when there is no adverse event and no special situation`);
+    if (r.is_adverse_event && r.meddra.length === 0) fail(`${at}: an adverse event needs a MedDRA code`);
+    if (!r.is_adverse_event && !r.special_situation && r.meddra.length) fail(`${at}: a message without an event holds no MedDRA code`);
+    if (!hasFaers) continue;
+    const f = r.faers;
+    if (!/^2026\d{4}$/.test(f.receivedate ?? "")) fail(`${at}: faers.receivedate`);
+    if (!["1", "2"].includes(f.serious) || (f.serious === "1") !== r.serious) fail(`${at}: faers.serious does not match serious`);
+    for (const [name, flag] of Object.entries(FLAGS)) if ((f[flag] === "1") !== r.seriousness.includes(name)) fail(`${at}: faers.${flag} does not match seriousness`);
+    if (f.primarysource?.qualification !== undefined && !["1", "2", "3", "4", "5"].includes(f.primarysource.qualification)) fail(`${at}: faers.primarysource.qualification`);
+    const pat = f.patient ?? {};
+    if (pat.patientsex !== undefined && !["0", "1", "2"].includes(pat.patientsex)) fail(`${at}: faers.patient.patientsex`);
+    if ((pat.patientonsetage === undefined) !== (pat.patientonsetageunit === undefined) || (pat.patientonsetageunit !== undefined && pat.patientonsetageunit !== "801")) fail(`${at}: faers.patient age and unit (801 is years)`);
+    const reactions = pat.reaction ?? [];
+    if (reactions.length !== r.meddra.length) fail(`${at}: faers has ${reactions.length} reactions for ${r.meddra.length} MedDRA codes`);
+    reactions.forEach((x, i) => {
+      const pt = pts.get(r.meddra[i]?.pt);
+      if (!pt || x.reactionmeddrapt !== pt.name) fail(`${at}: reactionmeddrapt "${x.reactionmeddrapt}" is not the name of PT ${r.meddra[i]?.pt}`);
+      if (!["1", "2", "3", "4", "5", "6"].includes(x.reactionoutcome)) fail(`${at}: reactionoutcome "${x.reactionoutcome}"`);
+    });
+    const drugs = pat.drug ?? [];
+    if (!drugs.length || drugs[0].drugcharacterization !== "1") fail(`${at}: the first drug must be the suspect (drugcharacterization 1)`);
+    for (const d of drugs) if (!["1", "2", "3"].includes(d.drugcharacterization) || !d.medicinalproduct) fail(`${at}: a drug lacks a valid drugcharacterization or medicinalproduct`);
+  }
+  const n = (f) => reports.filter(f).length;
+  const counts = [
+    ["lines", n(() => true), 64],
+    ["adverse events", n((r) => r.is_adverse_event), 44],
+    ["indirect adverse events", n((r) => r.is_adverse_event && r.indirect), 16],
+    ["adverse events with a missing criterion", n((r) => r.is_adverse_event && !(r.criteria?.reporter && r.criteria?.patient && r.criteria?.product && r.criteria?.event)), 4],
+    ["special situations without an adverse event", n((r) => r.special_situation && !r.is_adverse_event), 4],
+    ["near misses", n((r) => !r.is_adverse_event && !r.special_situation), 16],
+  ];
+  for (const [what, have, need] of counts) if (have < need) fail(`ae-reports.jsonl: needs at least ${need} ${what}, has ${have}`);
+  for (const k of ["pharma_a", "pharma_b"]) if (!n((r) => r.tenant_id === k)) fail(`ae-reports.jsonl: no line for ${k}`);
+  for (const k of ["hcp_chat", "email", "call_center"]) if (!n((r) => r.channel === k)) fail(`ae-reports.jsonl: no line for channel ${k}`);
+
+  for (const [file, text] of Object.entries(phiFiles())) {
+    if (read(file) !== text) fail(`${file} differs from scripts/gen-phi-notes.mjs: run node scripts/gen-phi-notes.mjs`);
+  }
+  const notes = read("data/hcp/safety/phi-notes.jsonl").trim().split("\n").map((l) => JSON.parse(l));
+  if (notes.length < 100) fail(`phi-notes.jsonl: needs 100 notes, has ${notes.length}`);
+  if (notes.filter((x) => x.spans.length === 0).length < 15) fail("phi-notes.jsonl: needs at least 15 notes with no identifier");
+  for (const x of notes) {
+    for (const s of x.spans) {
+      if (x.text.slice(s.start, s.end) !== s.text) fail(`phi-notes.jsonl ${x.id}: span ${s.start}-${s.end} is not "${s.text}"`);
+      if (!PHI_TYPES.includes(s.type)) fail(`phi-notes.jsonl ${x.id}: span type "${s.type}"`);
+    }
+  }
+}
+
+// 8. Label history (DailyMed set-id shape) and the SPL XML of each US label. See scripts/spl.mjs.
 for (const p of checkSpl()) fail(p);
 
 if (problems.length) {
