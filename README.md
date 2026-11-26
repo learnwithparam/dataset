@@ -13,6 +13,7 @@ All drugs, people, numbers, NPIs, emails and card numbers are made up. The NPI, 
 data/hcp/
 ├── docs/       12 label, trial, FAQ and SOP docs (US, DE, JP; superseded, expired, future-dated; pharma_a and pharma_b)
 ├── labels/     the full document, sized like the real one (a US label runs about 11,000 words), for each docs/ excerpt
+├── gold/       retrieval.jsonl (which sections answer a question) and claims.jsonl (does a quote support a claim), checked against docs/ and labels/
 ├── history/    each label's version history in DailyMed set-id shape, listing the sections each version changed
 ├── spl/        each US label as HL7 SPL XML with LOINC section codes, generated from labels/ (scripts/spl.mjs)
 ├── pdf/        each doc printed as the two-column PDF a company receives, plus manifest.json

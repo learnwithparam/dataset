@@ -285,6 +285,112 @@ for (const [file, text] of Object.entries(salesFiles())) {
 // 8. Label history (DailyMed set-id shape) and the SPL XML of each US label. See scripts/spl.mjs.
 for (const p of checkSpl()) fail(p);
 
+// 9. Gold sets (data/hcp/gold): retrieval.jsonl says which sections answer a question, claims.jsonl
+//    says whether a quote supports a claim. Every doc and section must exist, and every answer must be in force.
+{
+  const gdocs = new Map();
+  for (const dir of ["docs", "labels"]) {
+    for (const f of list(`data/hcp/${dir}`)) {
+      const text = read(`data/hcp/${dir}/${f}`);
+      const fm = Object.fromEntries(text.match(/^---\n([\s\S]*?)\n---/)[1].split("\n").map((l) => l.match(/^([a-z_]+):\s*(.*)$/)).filter(Boolean).map((m) => [m[1], m[2].trim()]));
+      const secs = new Map();
+      let cur = null;
+      for (const l of text.split("\n")) {
+        const h = l.match(/^#{2,3}\s+([\d.]+)\s/);
+        if (h) { cur = h[1]; secs.set(cur, l + "\n"); } else if (cur) secs.set(cur, secs.get(cur) + l + "\n");
+      }
+      if (dir === "labels" || !gdocs.has(fm.doc_id)) gdocs.set(fm.doc_id, { ...fm, text, secs });
+    }
+  }
+  const family = (id) => id.replace(/-v\d+$/, "");
+  const live = (s) => s === "active" || s === "approved";
+  // In force: active or approved, effective on or before as_of, and not replaced by a later version in force.
+  const inForce = (id, asOf) => {
+    const d = gdocs.get(id);
+    if (!d || !live(d.status) || d.effective_date > asOf) return false;
+    if (family(id) === id) return true;
+    return ![...gdocs].some(([o, x]) => o !== id && family(o) === family(id) && live(x.status) && x.effective_date <= asOf && x.effective_date > d.effective_date);
+  };
+  const gold = (name) => {
+    const p = `data/hcp/gold/${name}.jsonl`;
+    let lines;
+    try { lines = read(p).split("\n").filter(Boolean); } catch { fail(`${p}: missing`); return []; }
+    return lines.map((l, i) => { try { return JSON.parse(l); } catch { fail(`${p} line ${i + 1}: not JSON`); return null; } }).filter(Boolean);
+  };
+  const where = (g, x) => `gold/${g} ${x.id}`;
+  const secOf = (g, x, doc_id, section) => {
+    const d = gdocs.get(doc_id);
+    if (!d) { fail(`${where(g, x)}: no doc ${doc_id}`); return null; }
+    if (!d.secs.has(section)) { fail(`${where(g, x)}: ${doc_id} has no section ${section}`); return null; }
+    if (d.tenant_id !== x.tenant_id) fail(`${where(g, x)}: ${doc_id} belongs to ${d.tenant_id}, not ${x.tenant_id}`);
+    return d.secs.get(section);
+  };
+  const dup = (g, rows) => { const seen = new Set(); for (const x of rows) { if (seen.has(x.id)) fail(`${where(g, x)}: duplicate id`); seen.add(x.id); } };
+
+  const ret = gold("retrieval");
+  dup("retrieval", ret);
+  const kinds = { direct: 25, paraphrase: 25, follow_up: 20, other_country: 15, phrase: 15, table: 15, cross_doc: 10, version: 10, out_of_label: 20 };
+  for (const [k, need] of Object.entries(kinds)) {
+    const have = ret.filter((x) => x.kind === k).length;
+    if (have < need) fail(`retrieval.jsonl: needs at least ${need} ${k} lines, has ${have}`);
+  }
+  if (ret.length < 160) fail(`retrieval.jsonl: needs 160 lines, has ${ret.length}`);
+  if (ret.filter((x) => x.tenant_id === "pharma_b").length < 30) fail("retrieval.jsonl: needs at least 30 pharma_b lines");
+  for (const x of ret) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(x.as_of ?? "")) fail(`${where("retrieval", x)}: as_of`);
+    if (!kinds[x.kind]) fail(`${where("retrieval", x)}: kind "${x.kind}"`);
+    if (!["pharma_a", "pharma_b"].includes(x.tenant_id)) fail(`${where("retrieval", x)}: tenant_id`);
+    if (!x.query || !Array.isArray(x.relevant) || !Array.isArray(x.history)) { fail(`${where("retrieval", x)}: needs query, relevant and history`); continue; }
+    if ((x.kind === "out_of_label") !== (x.relevant.length === 0)) fail(`${where("retrieval", x)}: relevant is empty exactly for out_of_label`);
+    if (x.kind === "follow_up" && !x.history.length) fail(`${where("retrieval", x)}: follow_up needs history`);
+    if (!/^(US|DE|JP)$/.test(x.country ?? "")) fail(`${where("retrieval", x)}: country must be US, DE or JP`);
+    if (x.kind === "other_country" && x.country === "US") fail(`${where("retrieval", x)}: other_country needs country DE or JP`);
+    if (x.countries && x.kind !== "cross_doc") fail(`${where("retrieval", x)}: countries is only for a cross_doc line`);
+    const allowed = x.countries ?? [x.country];
+    for (const r of x.relevant) {
+      if (secOf("retrieval", x, r.doc_id, r.section) === null) continue;
+      const d = gdocs.get(r.doc_id);
+      if (![1, 2].includes(r.grade)) fail(`${where("retrieval", x)}: grade of ${r.doc_id} ${r.section}`);
+      if (x.kind === "other_country" && d.country !== x.country) fail(`${where("retrieval", x)}: ${r.doc_id} is a ${d.country} doc, the search country is ${x.country}`);
+      if (r.grade === 2) {
+        if (!inForce(r.doc_id, x.as_of)) fail(`${where("retrieval", x)}: grade-2 ${r.doc_id} is not in force on ${x.as_of}`);
+        if (!allowed.includes(d.country)) fail(`${where("retrieval", x)}: grade-2 ${r.doc_id} is ${d.country}, the line is ${allowed.join("/")}`);
+      }
+    }
+  }
+
+  const cl = gold("claims");
+  dup("claims", cl);
+  const labels = { supported: 35, unsupported: 15, wrong_number: 12, fabricated_quote: 15, wrong_version: 8, wrong_country: 5 };
+  for (const [k, need] of Object.entries(labels)) {
+    const have = cl.filter((x) => x.label === k).length;
+    if (have < need) fail(`claims.jsonl: needs at least ${need} ${k} lines, has ${have}`);
+  }
+  if (cl.length < 90) fail(`claims.jsonl: needs 90 lines, has ${cl.length}`);
+  for (const x of cl) {
+    if (!labels[x.label]) { fail(`${where("claims", x)}: label "${x.label}"`); continue; }
+    if (!x.claim || !x.quote || !x.as_of) { fail(`${where("claims", x)}: needs claim, quote and as_of`); continue; }
+    const text = secOf("claims", x, x.doc_id, x.section);
+    if (text === null) continue;
+    const d = gdocs.get(x.doc_id);
+    if (/[–—]/.test(x.quote + x.claim)) fail(`${where("claims", x)}: dash in claim or quote`);
+    if (x.label === "fabricated_quote") {
+      if (d.text.toLowerCase().includes(x.quote.toLowerCase())) fail(`${where("claims", x)}: fabricated quote is in ${x.doc_id}`);
+      continue;
+    }
+    if (!text.includes(x.quote)) fail(`${where("claims", x)}: quote is not in ${x.doc_id} ${x.section}`);
+    if (x.label === "wrong_version") {
+      if (inForce(x.doc_id, x.as_of)) fail(`${where("claims", x)}: wrong_version doc ${x.doc_id} is in force on ${x.as_of}`);
+      const cur = [...gdocs.keys()].find((o) => family(o) === family(x.doc_id) && inForce(o, x.as_of));
+      if (cur && gdocs.get(cur).text.includes(x.quote)) fail(`${where("claims", x)}: quote is also in the in-force ${cur}`);
+    } else if (x.label === "wrong_country") {
+      if (!/^(US|DE|JP)$/.test(x.country ?? "")) fail(`${where("claims", x)}: wrong_country needs country`);
+      else if (d.country === x.country) fail(`${where("claims", x)}: ${x.doc_id} is a ${x.country} doc`);
+      for (const [o, y] of gdocs) if (y.tenant_id === x.tenant_id && y.country === x.country && inForce(o, x.as_of) && y.text.includes(x.quote)) fail(`${where("claims", x)}: quote is also in ${o}`);
+    } else if (!inForce(x.doc_id, x.as_of)) fail(`${where("claims", x)}: ${x.label} doc ${x.doc_id} is not in force on ${x.as_of}`);
+  }
+}
+
 if (problems.length) {
   console.error(problems.map((p) => `FAIL ${p}`).join("\n"));
   process.exit(1);
