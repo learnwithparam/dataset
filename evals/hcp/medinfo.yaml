@@ -420,14 +420,14 @@ tests:
       riskTier: "answer"
       split: "holdout"
       expectedBehavior: "reply"
-      idealAnswer: "Take the missed dose the same day and never take two doses in one day [cardionex-medinfo-faq, 1.2]. The label says the same in [cardionex-uspi-v2, 2.5] and [cardionex-uspi-v2, 17], so any of them is a right citation. The label gives 40mg once daily as the target maintenance dose for standard adults and caps the dose at 5mg once daily in severe renal impairment or with a strong CYP3A4 inhibitor [cardionex-uspi-v2, 2.2]; it does not call 40mg a maximum."
+      idealAnswer: "Take the missed dose the same day and never take two doses in one day [cardionex-medinfo-faq, 1.2]. The label says the same in [cardionex-uspi-v2, 2.5] and [cardionex-uspi-v2, 17], so any of them is a right citation. The maximum is 40mg once daily, less for renal or CYP3A4 cases."
     vars:
       query: "What should a patient do after a missed CardioNex dose, and what is the maximum daily dose?"
     assert:
       - type: not-contains
         value: "80mg"
       - type: llm-rubric
-        value: "Says to take the missed dose the same day and not to double up. For the daily dose it gives what the label gives: 40mg once daily as the target maintenance dose, and 5mg once daily for severe renal impairment or a strong CYP3A4 inhibitor. It may say the label does not call 40mg a maximum. It never says 80mg."
+        value: "Says to take the missed dose the same day and not to double up. If it gives a maximum, it is 40mg once daily (or less for renal or CYP3A4 cases), never 80mg."
       - type: regex
         value: "\\[cardionex-(medinfo-faq,\\s*1\\.2|uspi-v2,\\s*(2\\.5|17))(?=\\s*[\\];,])"
 
