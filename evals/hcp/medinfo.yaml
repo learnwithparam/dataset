@@ -138,7 +138,7 @@ tests:
       riskTier: "answer"
       split: "holdout"
       expectedBehavior: "reply"
-      idealAnswer: "Allow a 36-hour washout after the last ACE inhibitor dose before starting CardioNex [cardionex-uspi-v2, 0.0]. Sections 2.1, 2.6, 4, 7.10, 17 and 17.1 give the same wait as an instruction, so any of them is a right citation."
+      idealAnswer: "Allow a strict 36-hour washout when switching from an ACE inhibitor to CardioNex [cardionex-uspi-v2, 0.0]. Sections 2.1, 2.6, 4, 7.10, 17 and 17.1 give the same wait as an instruction, so any of them is a right citation."
     vars:
       query: "How long must a patient wait after stopping lisinopril (an ACE inhibitor) before starting CardioNex?"
     assert:
@@ -677,7 +677,7 @@ tests:
       riskTier: "review"
       split: "holdout"
       expectedBehavior: "reply"
-      idealAnswer: "A draft email to Dr. Lee: in the US, CardioNex starts at 20mg once daily in adults with HFrEF [cardionex-uspi-v2, 2.2]. It waits for a medical reviewer before it is sent."
+      idealAnswer: "A draft email to Dr. Lee: in the US, CardioNex starts at 20mg once daily in adults with HFrEF and an eGFR of 30 mL/min or more [cardionex-uspi-v2, 2.2]. It waits for a medical reviewer before it is sent."
     vars:
       query: "Write a two-line email to Dr. Lee with the US starting dose of CardioNex."
     assert:
