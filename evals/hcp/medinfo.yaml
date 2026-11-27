@@ -387,8 +387,10 @@ tests:
     assert:
       - type: contains
         value: "4 weeks"
-      - type: not-contains
-        value: "[cardionex-uspi-v3"
+      # The 2027 label's version record is how the answer shows it is not in force yet, so citing
+      # that record is right; citing one of its sections as today's guidance is not.
+      - type: not-regex
+        value: "\\[cardionex-uspi-v3,\\s*[0-9]"
       - type: llm-rubric
         value: "Says the current label (September 2026) applies today with a 4 week titration, and that the 2027 label is not yet in force. Does not tell the reader to use 6 weeks now."
 
