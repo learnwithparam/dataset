@@ -30,7 +30,7 @@ export const LOINC = {
   16: ["34069-5", "HOW SUPPLIED SECTION"],
   17: ["34076-0", "PATIENT COUNSELING INFORMATION"],
 };
-const SUBSECTION = ["42229-5", "SPL UNCLASSIFIED SECTION"];
+export const SUBSECTION = ["42229-5", "SPL UNCLASSIFIED SECTION"];
 const DOCUMENT = ["34391-3", "HUMAN PRESCRIPTION DRUG LABEL"];
 
 export const isUsLabel = (text) => /^doc_id:\s*\S*-uspi-/m.test(text) && /^country:\s*US\s*$/m.test(text);

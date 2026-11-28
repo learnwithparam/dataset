@@ -5,7 +5,7 @@ import { join, basename, extname } from "node:path";
 import { createHash } from "node:crypto";
 import { inflateSync } from "node:zlib";
 import { salesFacts, salesFiles } from "./gen-sales.mjs";
-import { checkSpl } from "./spl.mjs";
+import { checkSpl, LOINC, SUBSECTION } from "./spl.mjs";
 import { phiFiles, PHI_TYPES } from "./gen-phi-notes.mjs";
 
 const root = new URL("..", import.meta.url).pathname;
@@ -321,7 +321,9 @@ for (const p of checkSpl()) fail(p);
       if (dir === "labels" || !gdocs.has(fm.doc_id)) gdocs.set(fm.doc_id, { ...fm, text, secs });
     }
   }
-  const family = (id) => id.replace(/-v\d+$/, "");
+  // The versions of one label share its SPL set id (data/hcp/history); any other document is its own family.
+  const setIds = new Map(list("data/hcp/history").flatMap((f) => { const h = JSON.parse(read(`data/hcp/history/${f}`)); return h.versions.map((v) => [v.doc_id, h.setid]); }));
+  const family = (id) => setIds.get(id) ?? id;
   const live = (s) => s === "active" || s === "approved";
   // In force: active or approved, effective on or before as_of, and not replaced by a later version in force.
   const inForce = (id, asOf) => {
@@ -408,6 +410,29 @@ for (const p of checkSpl()) fail(p);
       for (const [o, y] of gdocs) if (y.tenant_id === x.tenant_id && y.country === x.country && inForce(o, x.as_of) && y.text.includes(x.quote)) fail(`${where("claims", x)}: quote is also in ${o}`);
     } else if (!inForce(x.doc_id, x.as_of)) fail(`${where("claims", x)}: ${x.label} doc ${x.doc_id} is not in force on ${x.as_of}`);
   }
+}
+
+// 10. Section codes (data/hcp/sections.json): every section of every prescribing label (a document
+//     with a set id in data/hcp/history) has the LOINC code SPL gives its kind of section, so code
+//     can find the boxed warning, the dosing and the contraindications of any label by what they
+//     are, not by the number one country's format gives them.
+{
+  const codes = JSON.parse(read("data/hcp/sections.json"));
+  const known = new Set([...Object.values(LOINC).map(([code]) => code), SUBSECTION[0]]);
+  const labels = new Set(list("data/hcp/history").flatMap((f) => JSON.parse(read(`data/hcp/history/${f}`)).versions.map((v) => v.doc_id)));
+  for (const f of list("data/hcp/labels")) {
+    const text = read(`data/hcp/labels/${f}`);
+    const id = text.match(/^doc_id:\s*(\S+)/m)[1];
+    if (!labels.has(id)) continue;
+    const want = [...text.matchAll(/^## (\S+) /gm)].map((m) => m[1]);
+    const got = codes[id] ?? {};
+    for (const n of want) if (!got[n]) fail(`sections.json: ${id} ${n} has no section code`);
+    for (const [n, code] of Object.entries(got)) {
+      if (!want.includes(n)) fail(`sections.json: ${id} has no section ${n}`);
+      if (!known.has(code)) fail(`sections.json: ${id} ${n} has ${code}, not an SPL section code`);
+    }
+  }
+  for (const id of Object.keys(codes)) if (!labels.has(id)) fail(`sections.json: ${id} is not a prescribing label in data/hcp/history`);
 }
 
 if (problems.length) {
