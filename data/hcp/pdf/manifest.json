@@ -144,6 +144,17 @@
       "pdf": "data/hcp/pdf/pv-reporting-sop.pdf",
       "source": "data/hcp/labels/pv-reporting-sop.md",
       "sha256": "8802e81f52822e27c126b0ddca8976d658aaca30daf11558c9d100a85e20547c"
+    },
+    {
+      "doc_id": "xanoridel-uspi-v1",
+      "tenant_id": "pharma_a",
+      "brand_id": "brand_xanoridel",
+      "status": "active",
+      "effective_date": "2026-03-16",
+      "country": "US",
+      "pdf": "data/hcp/pdf/xanoridel-uspi-2026-v1.pdf",
+      "source": "data/hcp/labels/xanoridel-uspi-2026-v1.md",
+      "sha256": "6188d69bcc10ad19b54954a59db28ddd4c38f012ba042e9515cfebbeceef809c"
     }
   ]
 }

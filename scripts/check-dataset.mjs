@@ -95,7 +95,7 @@ const METADATA = {
   slice: /^[a-z][a-z0-9-]+$/,
   chapter: /^[012]\d$/,
   riskTier: /^(answer|review|safety|stop)$/,
-  split: /^(train|holdout)$/,
+  split: /^(train|holdout|heldout)$/,
   expectedBehavior: /^(reply|ask_follow_up|defer_question)$/,
 };
 const TEXT_ASSERT = /type: (contains|not-contains|regex|not-regex)\n\s+value: ("(?:[^"\\]|\\.)*")/g;

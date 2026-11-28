@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <id root="2db5fbcc-7997-58bb-a654-c24a98e49a2f"/>
+  <code code="34391-3" codeSystem="2.16.840.1.113883.6.1" displayName="HUMAN PRESCRIPTION DRUG LABEL"/>
+  <title>XANORIDEL (xanoridostat) Prescribing Information, Tenant Pharma_A Confidential</title>
+  <effectiveTime value="20260316"/>
+  <setId root="4e8b2d71-9c3a-4f15-b6e0-2a7d5c91f308"/>
+  <versionNumber value="1"/>
+  <component>
+    <structuredBody>
+      <component>
+        <section ID="s0-0">
+          <id root="ff8170b7-480d-5f9b-ab55-2bd41894ad77"/>
+          <code code="34066-1" codeSystem="2.16.840.1.113883.6.1" displayName="BOXED WARNING SECTION"/>
+          <title>0.0 Warnings in Brief</title>
+          <text>
+            <list listType="unordered">
+              <item><content styleCode="bold">SERIOUS SKIN REACTIONS:</content> Stop Xanoridel at the first sign of a rash. Severe skin reactions, including Stevens-Johnson syndrome, were reported in the first 2 months of treatment.</item>
+              <item><content styleCode="bold">CONTRAINDICATIONS:</content> Do not use with azathioprine or mercaptopurine.</item>
+            </list>
+          </text>
+          <effectiveTime value="20260316"/>
+        </section>
+      </component>
+      <component>
+        <section ID="s1">
+          <id root="48b91a6a-e9e6-5e3b-a382-b75d1efde064"/>
+          <code code="34067-9" codeSystem="2.16.840.1.113883.6.1" displayName="INDICATIONS &amp; USAGE SECTION"/>
+          <title>1 INDICATIONS &amp; USAGE SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s1-1">
+              <id root="5ca35a7d-7d3e-5fe9-a7a0-6a660da078fb"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>1.1 Indications and Usage</title>
+              <text>
+                <paragraph>Xanoridel is a xanthine oxidase inhibitor indicated for the chronic lowering of serum uric acid in adults with gout.</paragraph>
+                <list listType="unordered">
+                  <item>Xanoridel is <content styleCode="bold">NOT</content> recommended for the treatment of high uric acid without gout (asymptomatic hyperuricemia).</item>
+                  <item>Xanoridel does not treat a gout flare that has already started.</item>
+                </list>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s1-2">
+              <id root="f84aba18-00a3-562a-a313-d8fd4bd4cccb"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>1.2 Limitations of Use</title>
+              <text>
+                <paragraph>Safety and efficacy have <content styleCode="bold">NOT</content> been established in patients younger than 18 years, or for the prevention of kidney stones in patients without gout.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s2">
+          <id root="c631a3f6-be53-5c88-a3b9-6c1bff0791c1"/>
+          <code code="34068-7" codeSystem="2.16.840.1.113883.6.1" displayName="DOSAGE &amp; ADMINISTRATION SECTION"/>
+          <title>2 DOSAGE &amp; ADMINISTRATION SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s2-1">
+              <id root="b7ce346f-467c-50f1-a76b-b8dbfbbf4821"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.1 Recommended Dosage</title>
+              <text>
+                <paragraph>The recommended starting dose is <content styleCode="bold">40 mg orally once daily</content>, with or without food.</paragraph>
+                <list listType="unordered">
+                  <item>Measure serum uric acid 2 weeks after starting and after each dose change.</item>
+                  <item>Raise the dose by 40 mg every 2 weeks until the serum uric acid is below 6 mg/dL.</item>
+                </list>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s2-2">
+              <id root="5975d440-f7b8-518f-ab0c-addcee54d7c1"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.2 Maximum Dose</title>
+              <text>
+                <paragraph>The maximum daily dose is <content styleCode="bold">160 mg</content>. Doses above 160 mg once daily were not studied.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s2-3">
+              <id root="1f348191-2fea-5c47-ab0e-0664be8e4556"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.3 Renal Impairment Dosing</title>
+              <text>
+                <table>
+                  <thead><tr><th>Creatinine clearance</th><th>Starting dose</th><th>Maximum dose</th></tr></thead>
+                  <tbody>
+                    <tr><td>60 mL/min or more</td><td>40 mg once daily</td><td>160 mg once daily</td></tr>
+                    <tr><td>30 to 59 mL/min</td><td>40 mg once daily</td><td>80 mg once daily</td></tr>
+                    <tr><td>15 to 29 mL/min</td><td>20 mg once daily</td><td>40 mg once daily</td></tr>
+                    <tr><td>Below 15 mL/min or on dialysis</td><td>Not recommended</td><td>Not recommended</td></tr>
+                  </tbody>
+                </table>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s2-4">
+              <id root="89171af1-ae61-5899-ab0e-a243afd91d71"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.4 Hepatic Impairment Dosing</title>
+              <text>
+                <paragraph>No dose change is needed for mild hepatic impairment (Child-Pugh A). The maximum dose in moderate hepatic impairment (Child-Pugh B) is 80 mg once daily. Xanoridel has not been studied in severe hepatic impairment (Child-Pugh C) and is not recommended.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s2-5">
+              <id root="806fb05c-b0a8-517b-a6b8-8d6f71c2e692"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.5 Gout Flare Prophylaxis</title>
+              <text>
+                <paragraph>Gout flares may increase when Xanoridel is started, because urate crystals move out of the joints. Give flare prophylaxis with colchicine or a nonsteroidal anti-inflammatory drug for at least <content styleCode="bold">6 months</content> after starting Xanoridel. If a flare occurs, do not stop Xanoridel; treat the flare at the same time.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s2-6">
+              <id root="2dc20414-1786-56db-adb2-293a911d187d"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.6 Administration Instructions</title>
+              <text>
+                <paragraph>Swallow the tablets whole. The 40 mg and 80 mg tablets are scored and may be split. Take Xanoridel at about the same time each day.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s2-7">
+              <id root="8d522764-6c0a-567a-a295-b15bcf4e6d0f"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>2.7 Missed Dose</title>
+              <text>
+                <paragraph>If a dose is missed, take it on the same day. Do not take two doses on the next day.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s3">
+          <id root="d6077c5f-b4de-5167-aa5f-0ab46ec0f1e5"/>
+          <code code="43678-2" codeSystem="2.16.840.1.113883.6.1" displayName="DOSAGE FORMS &amp; STRENGTHS SECTION"/>
+          <title>3 Dosage Forms and Strengths</title>
+          <text>
+            <paragraph>Film-coated tablets: 20 mg (white, round), 40 mg (yellow, oval, scored) and 80 mg (orange, oval, scored).</paragraph>
+          </text>
+          <effectiveTime value="20260316"/>
+        </section>
+      </component>
+      <component>
+        <section ID="s4">
+          <id root="178a7d5e-401c-5e58-aaf6-ebbcdeb4dd03"/>
+          <code code="34070-3" codeSystem="2.16.840.1.113883.6.1" displayName="CONTRAINDICATIONS SECTION"/>
+          <title>4 Contraindications</title>
+          <text>
+            <paragraph>Xanoridel is contraindicated in patients:</paragraph>
+            <list listType="unordered">
+              <item>treated with azathioprine or mercaptopurine, because xanthine oxidase breaks these medicines down and their levels can rise to toxic levels;</item>
+              <item>with a known allergy to xanoridostat or to any ingredient of the tablet;</item>
+              <item>who had a serious skin reaction to Xanoridel or to another xanthine oxidase inhibitor.</item>
+            </list>
+          </text>
+          <effectiveTime value="20260316"/>
+        </section>
+      </component>
+      <component>
+        <section ID="s5">
+          <id root="dda19754-6009-591c-af51-6b630d2fc532"/>
+          <code code="43685-7" codeSystem="2.16.840.1.113883.6.1" displayName="WARNINGS AND PRECAUTIONS SECTION"/>
+          <title>5 WARNINGS AND PRECAUTIONS SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s5-1">
+              <id root="b90075be-deb5-5e80-a443-b183ea20679c"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>5.1 Serious Skin Reactions</title>
+              <text>
+                <paragraph>Stevens-Johnson syndrome, toxic epidermal necrolysis and drug reaction with eosinophilia and systemic symptoms were reported in 0.1% of patients, most in the first 8 weeks. Patients who carry the HLA-B*58:01 allele had a higher rate. Stop Xanoridel at the first rash and do not restart it.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s5-2">
+              <id root="2f16626e-3449-5f6b-a249-b81ffa54449b"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>5.2 Cardiovascular Death</title>
+              <text>
+                <paragraph>In XANO-CV, cardiovascular death occurred in 2.1% of patients on Xanoridel and 1.8% of patients on allopurinol (hazard ratio 1.17; 95% CI 0.88 to 1.55). Weigh this in patients with established cardiovascular disease, and tell them the symptoms of heart attack and stroke.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s5-3">
+              <id root="cbeee976-288d-5391-acb6-afe6eebbc71a"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>5.3 Liver Injury</title>
+              <text>
+                <paragraph>Raised liver enzymes above 3 times the upper limit of normal occurred in 1.9% of patients. Check liver tests before starting, at 2 months and when symptoms suggest liver injury. Stop Xanoridel if ALT stays above 3 times the upper limit of normal with a raised bilirubin.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s5-4">
+              <id root="dfcf7daf-350b-5a95-abcd-792a362fa278"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>5.4 Gout Flares</title>
+              <text>
+                <paragraph>Flares increased in the first 3 months of treatment: 34% of patients on Xanoridel had a flare in that time, against 22% on placebo. Flare prophylaxis lowers the rate (see 2.5).</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s5-5">
+              <id root="e28e880d-ca62-50f5-a50b-d706b307cd51"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>5.5 Kidney Stones in Tumor Lysis</title>
+              <text>
+                <paragraph>Xanoridel was not studied in patients with tumor lysis or Lesch-Nyhan syndrome, where xanthine can build up and form kidney stones. It is not recommended in these patients.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s5-6">
+              <id root="6c272bb4-da7b-5812-a714-9076f6b6d870"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>5.6 Monitoring</title>
+              <text>
+                <paragraph>Measure serum uric acid 2 weeks after starting and after each dose change, then every 6 months. Measure creatinine clearance before starting and every 12 months.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s6">
+          <id root="413f6ca4-6ba1-52c6-a3ff-e7c39ea2cd05"/>
+          <code code="34084-4" codeSystem="2.16.840.1.113883.6.1" displayName="ADVERSE REACTIONS SECTION"/>
+          <title>6 ADVERSE REACTIONS SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s6-1">
+              <id root="d96019e0-6bfd-5926-af72-eeea60f50cff"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>6.1 Clinical Trials Experience</title>
+              <text>
+                <paragraph>The data below come from 2,840 patients with gout treated for up to 52 weeks in three controlled trials (XANO-1, XANO-2 and XANO-CV).</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s6-2">
+              <id root="3ede21cd-a150-5fca-adb7-8197d8bd5024"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>6.2 Common Adverse Reactions</title>
+              <text>
+                <table>
+                  <thead><tr><th>Adverse reaction</th><th>Xanoridel 80 mg (n=1,120)</th><th>Xanoridel 160 mg (n=860)</th><th>Placebo (n=420)</th></tr></thead>
+                  <tbody>
+                    <tr><td>Gout flare (first 3 months)</td><td>31%</td><td>37%</td><td>22%</td></tr>
+                    <tr><td>Raised liver enzymes</td><td>1.4%</td><td>2.6%</td><td>0.7%</td></tr>
+                    <tr><td>Diarrhea</td><td>3.1%</td><td>3.8%</td><td>2.4%</td></tr>
+                    <tr><td>Rash</td><td>1.8%</td><td>2.2%</td><td>1.0%</td></tr>
+                    <tr><td>Headache</td><td>2.9%</td><td>3.0%</td><td>2.6%</td></tr>
+                    <tr><td>Joint pain</td><td>2.4%</td><td>2.6%</td><td>2.9%</td></tr>
+                  </tbody>
+                </table>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s6-3">
+              <id root="069bc03b-bbfc-556b-a93a-62068eb83235"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>6.3 Discontinuations</title>
+              <text>
+                <paragraph>Adverse reactions led 4.6% of patients on Xanoridel 80 mg, 6.9% on 160 mg and 3.1% on placebo to stop treatment. The most common reasons were rash and raised liver enzymes.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s6-4">
+              <id root="4b0c40c6-cc07-543d-adca-6cdf4f6180f2"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>6.4 Postmarketing Experience</title>
+              <text>
+                <paragraph>Reports since approval include drug reaction with eosinophilia and systemic symptoms, interstitial nephritis and low platelet counts. These come from a population of unknown size, so a rate cannot be given.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s7">
+          <id root="5c7adce8-74e9-5abd-a9ad-843d9ffeaed6"/>
+          <code code="34073-7" codeSystem="2.16.840.1.113883.6.1" displayName="DRUG INTERACTIONS SECTION"/>
+          <title>7 DRUG INTERACTIONS SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s7-1">
+              <id root="10c2fd86-2363-527e-acbb-d4f02eb2a4c9"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>7.1 Azathioprine and Mercaptopurine</title>
+              <text>
+                <paragraph>Xanoridel raises the levels of azathioprine and mercaptopurine, which can cause severe bone marrow suppression. Use together is contraindicated (see 4).</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s7-2">
+              <id root="b56121a3-02e5-5a56-a934-4d9b1bf9588f"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>7.2 Theophylline</title>
+              <text>
+                <paragraph>Xanoridel raised theophylline exposure by 40%. Measure theophylline levels when starting Xanoridel.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s7-3">
+              <id root="d92ac972-d300-53f7-a37c-04b32af354da"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>7.3 Medicines With No Interaction</title>
+              <text>
+                <paragraph>No dose change is needed with colchicine, naproxen, indomethacin, hydrochlorothiazide, warfarin or desipramine.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s7-4">
+              <id root="0fdca02b-7e9d-5b63-aeb3-60ba8b20876f"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>7.4 Summary of Drug Interactions</title>
+              <text>
+                <table>
+                  <thead><tr><th>Medicine</th><th>Effect</th><th>What to do</th></tr></thead>
+                  <tbody>
+                    <tr><td>Azathioprine</td><td>Level rises many times</td><td>Contraindicated</td></tr>
+                    <tr><td>Mercaptopurine</td><td>Level rises many times</td><td>Contraindicated</td></tr>
+                    <tr><td>Theophylline</td><td>Exposure up 40%</td><td>Measure theophylline levels</td></tr>
+                    <tr><td>Colchicine</td><td>No change</td><td>No dose change</td></tr>
+                    <tr><td>Warfarin</td><td>No change</td><td>No dose change</td></tr>
+                  </tbody>
+                </table>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s8">
+          <id root="da456be2-51c7-51c5-a221-c8acbb0d45cb"/>
+          <code code="43684-0" codeSystem="2.16.840.1.113883.6.1" displayName="USE IN SPECIFIC POPULATIONS SECTION"/>
+          <title>8 USE IN SPECIFIC POPULATIONS SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s8-1">
+              <id root="ac3108bd-3707-569a-a550-92cc3715cdd4"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.1 Pregnancy</title>
+              <text>
+                <paragraph>There are no human data on Xanoridel in pregnancy. In rats given 30 times the human exposure, there were more early losses of pregnancy; at 5 times the human exposure there was no effect. Use Xanoridel in pregnancy only if the benefit justifies the risk to the fetus. Report a pregnancy exposure to Pharma A Medical Safety.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s8-2">
+              <id root="ac914faa-869b-5dac-a5db-991c17a90984"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.2 Lactation</title>
+              <text>
+                <paragraph>It is not known whether xanoridostat passes into human milk. It was found in rat milk at twice the level in rat blood. Weigh the benefit of breastfeeding against the mother's need for Xanoridel.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s8-3">
+              <id root="8bd81658-6e69-5ed5-a170-90f1e28495c3"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.3 Females and Males of Reproductive Potential</title>
+              <text>
+                <paragraph>Xanoridel did not affect fertility in rats at 10 times the human exposure.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s8-4">
+              <id root="f71fa17f-f974-5041-a368-fb1520443df0"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.4 Pediatric Use</title>
+              <text>
+                <paragraph>Safety and effectiveness in patients younger than 18 years have not been established.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s8-5">
+              <id root="08cbe73a-c9ee-5199-a84b-da3e1a3f6cfc"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.5 Geriatric Use</title>
+              <text>
+                <paragraph>Of the patients in the trials, 23% were 65 years or older. Exposure was 20% higher in this group, mostly from lower kidney function. Choose the dose by creatinine clearance (see 2.3).</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s8-6">
+              <id root="3c5b0e60-b47d-5b9a-a67e-58be4692cf34"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.6 Renal Impairment</title>
+              <text>
+                <paragraph>Exposure to xanoridostat doubled when creatinine clearance was 15 to 29 mL/min. See 2.3 for the dose by creatinine clearance.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s8-7">
+              <id root="844ff826-5a1e-55e0-ab22-b68aed44046a"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>8.7 Hepatic Impairment</title>
+              <text>
+                <paragraph>Exposure rose by 35% in moderate hepatic impairment (Child-Pugh B). See 2.4.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s10">
+          <id root="e455be77-a509-5b48-a1d7-7e83aed51c5e"/>
+          <code code="34088-5" codeSystem="2.16.840.1.113883.6.1" displayName="OVERDOSAGE SECTION"/>
+          <title>10 Overdosage</title>
+          <text>
+            <paragraph>Patients took up to 480 mg in a single dose with no serious effects. There is no antidote. Xanoridostat is removed by hemodialysis only in small amounts.</paragraph>
+          </text>
+          <effectiveTime value="20260316"/>
+        </section>
+      </component>
+      <component>
+        <section ID="s11">
+          <id root="b1367ff7-4eb2-556d-a8d8-823cfe05dc2d"/>
+          <code code="34089-3" codeSystem="2.16.840.1.113883.6.1" displayName="DESCRIPTION SECTION"/>
+          <title>11 Description</title>
+          <text>
+            <paragraph>Xanoridel tablets contain xanoridostat, a selective xanthine oxidase inhibitor. Each tablet also contains lactose, microcrystalline cellulose and magnesium stearate.</paragraph>
+          </text>
+          <effectiveTime value="20260316"/>
+        </section>
+      </component>
+      <component>
+        <section ID="s12">
+          <id root="d1a9aa9a-62ca-5dbf-a90e-b3d5500cc319"/>
+          <code code="34090-1" codeSystem="2.16.840.1.113883.6.1" displayName="CLINICAL PHARMACOLOGY SECTION"/>
+          <title>12 CLINICAL PHARMACOLOGY SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s12-1">
+              <id root="e8786564-656a-58a1-a24a-d33e45410f54"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>12.1 Mechanism of Action</title>
+              <text>
+                <paragraph>Xanoridostat blocks xanthine oxidase, the enzyme that turns hypoxanthine into xanthine and xanthine into uric acid, so the body makes less uric acid.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s12-2">
+              <id root="4a091b02-fe4c-59f4-af16-508be0406e48"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>12.2 Pharmacodynamics</title>
+              <text>
+                <paragraph>At 80 mg once daily, serum uric acid fell by 47% from baseline after 2 weeks.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s12-3">
+              <id root="41803be6-fad3-597a-a98f-34613726aca2"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>12.3 Pharmacokinetics</title>
+              <text>
+                <paragraph>Xanoridostat reaches its peak level 1 to 2 hours after a dose. The half-life is 9 hours, so once daily dosing gives steady levels. Food does not change exposure. It is cleared by the liver (60%) and the kidneys (40%).</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s14">
+          <id root="5f8faed7-0596-5121-abc0-2cdce1b4ccb9"/>
+          <code code="34092-7" codeSystem="2.16.840.1.113883.6.1" displayName="CLINICAL STUDIES SECTION"/>
+          <title>14 CLINICAL STUDIES SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s14-1">
+              <id root="d7fb8ef2-bb0e-5334-ada8-3e06abfc8772"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>14.1 XANO-1: Serum Uric Acid Below 6 mg/dL</title>
+              <text>
+                <paragraph>XANO-1 randomized 1,060 adults with gout and a serum uric acid of 8 mg/dL or more to Xanoridel 80 mg, Xanoridel 160 mg or placebo for 26 weeks.</paragraph>
+                <table>
+                  <thead><tr><th>Treatment arm</th><th>Patients</th><th>Serum uric acid below 6 mg/dL at week 26</th></tr></thead>
+                  <tbody>
+                    <tr><td>Xanoridel 80 mg</td><td>420</td><td>64%</td></tr>
+                    <tr><td>Xanoridel 160 mg</td><td>420</td><td>79%</td></tr>
+                    <tr><td>Placebo</td><td>220</td><td>2%</td></tr>
+                  </tbody>
+                </table>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s14-2">
+              <id root="177772a5-e5ca-590d-adc4-d2ea7e35de81"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>14.2 XANO-2: Comparison With Allopurinol</title>
+              <text>
+                <paragraph>XANO-2 compared Xanoridel 80 mg with allopurinol 300 mg in 760 adults for 52 weeks. At week 52, 61% of patients on Xanoridel and 39% on allopurinol had a serum uric acid below 6 mg/dL.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s14-3">
+              <id root="6da4204a-3d2c-591a-a35d-f1950f6afe0f"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>14.3 XANO-CV: Cardiovascular Safety</title>
+              <text>
+                <paragraph>XANO-CV followed 6,190 adults with gout and cardiovascular disease for a median of 32 months. See 5.2 for the results.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s16">
+          <id root="6c447085-64c8-5059-af19-3c935f27b47c"/>
+          <code code="34069-5" codeSystem="2.16.840.1.113883.6.1" displayName="HOW SUPPLIED SECTION"/>
+          <title>16 HOW SUPPLIED SECTION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s16-1">
+              <id root="842bd118-efb6-5257-ad5c-b45a82b7e92b"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>16.1 How Supplied</title>
+              <text>
+                <paragraph>Bottles of 30 tablets: 20 mg (NDC 50199-401-30), 40 mg (NDC 50199-402-30) and 80 mg (NDC 50199-403-30).</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s16-2">
+              <id root="85b80184-4b9d-55b0-a4d1-22ae613bdc98"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>16.2 Storage and Handling</title>
+              <text>
+                <paragraph>Store at 20 to 25 °C. Keep the bottle closed to protect from moisture.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+      <component>
+        <section ID="s17">
+          <id root="764bb755-3f02-5133-ad73-3e043c090755"/>
+          <code code="34076-0" codeSystem="2.16.840.1.113883.6.1" displayName="PATIENT COUNSELING INFORMATION"/>
+          <title>17 PATIENT COUNSELING INFORMATION</title>
+          <effectiveTime value="20260316"/>
+          <component>
+            <section ID="s17-1">
+              <id root="b905931a-5be1-56da-aefb-0032a98604f4"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>17.1 Patient Counseling Information</title>
+              <text>
+                <paragraph>Tell patients to stop Xanoridel and call their doctor at the first sign of a rash; to keep taking Xanoridel during a gout flare; and to get help at once for chest pain, shortness of breath or sudden weakness on one side.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+          <component>
+            <section ID="s17-2">
+              <id root="7146250c-0a33-58af-a883-e1a59cbed079"/>
+              <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+              <title>17.2 Reporting Suspected Adverse Reactions</title>
+              <text>
+                <paragraph>Report suspected adverse reactions to Pharma A Medical Safety, or to FDA MedWatch.</paragraph>
+              </text>
+              <effectiveTime value="20260316"/>
+            </section>
+          </component>
+        </section>
+      </component>
+    </structuredBody>
+  </component>
+</document>

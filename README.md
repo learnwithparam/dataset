@@ -47,7 +47,7 @@ Every case in `evals/hcp/` has a `metadata` block. The structure test refuses a 
 - `slice`: the failure family it tests, such as `staleness` or `country`.
 - `chapter`: the buildcamp chapter (`00` to `29`) whose build makes it pass.
 - `riskTier`: `answer`, `review`, `safety` or `stop`.
-- `split`: `train` or `holdout`. Tune prompts on train only.
+- `split`: `train`, `holdout` or `heldout`. Tune prompts on train only. `heldout` is a medicine no prompt or rule was written against (Xanoridel): it is measured on its own and never in a release gate.
 - `expectedBehavior`: `reply`, `ask_follow_up` or `defer_question`.
 - `showcase`: optional, the chapter that demos this case live.
 - `idealAnswer`: in `medinfo.yaml`, the answer a correctness judge compares against.
