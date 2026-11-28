@@ -1,0 +1,4 @@
+{
+  "brand_cardionex": { "name": "CardioNex", "tenant_id": "pharma_a" },
+  "brand_neurovex": { "name": "NeuroVex", "tenant_id": "pharma_b" }
+}
