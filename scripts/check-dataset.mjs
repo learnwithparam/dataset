@@ -435,6 +435,28 @@ for (const p of checkSpl()) fail(p);
   for (const id of Object.keys(codes)) if (!labels.has(id)) fail(`sections.json: ${id} is not a prescribing label in data/hcp/history`);
 }
 
+// 11. Brands (data/hcp/brands.json): the display name and company of every brand id. The desk
+//     lists a company's medicines from here, so a new medicine is data, not code.
+{
+  const brands = JSON.parse(read("data/hcp/brands.json"));
+  const used = new Map();
+  for (const dir of ["docs", "labels"]) {
+    for (const f of list(`data/hcp/${dir}`)) {
+      const text = read(`data/hcp/${dir}/${f}`);
+      const brand = text.match(/^brand_id:\s*(\S+)/m)?.[1];
+      const tenant = text.match(/^tenant_id:\s*(\S+)/m)?.[1];
+      if (!brand) { fail(`${dir}/${f}: no brand_id`); continue; }
+      used.set(brand, tenant);
+      if (!brands[brand]) fail(`brands.json: ${brand} (${dir}/${f}) has no entry`);
+      else if (brands[brand].tenant_id !== tenant) fail(`brands.json: ${brand} belongs to ${brands[brand].tenant_id}, but ${dir}/${f} is ${tenant}'s`);
+    }
+  }
+  for (const [id, brand] of Object.entries(brands)) {
+    if (!used.has(id)) fail(`brands.json: ${id} has no document`);
+    if (`brand_${brand.name.toLowerCase()}` !== id) fail(`brands.json: ${id} is named ${brand.name}; the id is brand_ and the name in lower case`);
+  }
+}
+
 if (problems.length) {
   console.error(problems.map((p) => `FAIL ${p}`).join("\n"));
   process.exit(1);

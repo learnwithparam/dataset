@@ -16,6 +16,7 @@ data/hcp/
 ├── gold/       retrieval.jsonl (which sections answer a question) and claims.jsonl (does a quote support a claim), checked against docs/ and labels/
 ├── history/    each label's version history in DailyMed set-id shape, listing the sections each version changed
 ├── sections.json  the SPL LOINC code of every section of every prescribing label (boxed warning, dosage, contraindications, ...)
+├── brands.json    the display name and company of every brand_id, so a new medicine is a data change
 ├── spl/        each US label as HL7 SPL XML with LOINC section codes, generated from labels/ (scripts/spl.mjs)
 ├── pdf/        each doc printed as the two-column PDF a company receives, plus manifest.json
 ├── sql/        26 weeks of sales per company in two vendor shapes (scripts/gen-sales.mjs), with NPIs and emails that must not leak
