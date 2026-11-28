@@ -1,4 +1,5 @@
 {
   "brand_cardionex": { "name": "CardioNex", "tenant_id": "pharma_a" },
-  "brand_neurovex": { "name": "NeuroVex", "tenant_id": "pharma_b" }
+  "brand_neurovex": { "name": "NeuroVex", "tenant_id": "pharma_b" },
+  "brand_xanoridel": { "name": "Xanoridel", "tenant_id": "pharma_a" }
 }

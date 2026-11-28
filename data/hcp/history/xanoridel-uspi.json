@@ -1,0 +1,15 @@
+{
+  "setid": "4e8b2d71-9c3a-4f15-b6e0-2a7d5c91f308",
+  "title": "XANORIDEL (xanoridostat) tablets, for oral use",
+  "tenant_id": "pharma_a",
+  "country": "US",
+  "versions": [
+    {
+      "version": 1,
+      "doc_id": "xanoridel-uspi-v1",
+      "effective_date": "2026-03-16",
+      "status": "active",
+      "changes": []
+    }
+  ]
+}
